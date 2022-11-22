@@ -1,4 +1,6 @@
-
+if not game:IsLoaded() then
+	game.Loaded:Wait()
+end
 
 local VirtualInputManager = game:GetService("VirtualInputManager")
 local Player = game:GetService("Players").LocalPlayer or game:GetService("Players").PlayerAdded:Wait()
@@ -249,13 +251,16 @@ local function CreateWindow()
 	return Window
 end
 
+local Window = CreateWindow()
+
+
 return Player, Rayfield, Click, comma, Notify, CreateWindow
 
 
 
 
 
-local Window = CreateWindow()
+
 
 
 
