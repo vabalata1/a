@@ -14,7 +14,7 @@ pcall(function()
 			writefile("InfernoXWebhooking.txt", CurrentTime)
 			print("[Inferno X] Debug: Webhook Delay Set at "..CurrentTime)
 			Webhook = GlobalWebhook
-		elseif tonumber(readfile("InfernoXWebhooking.txt")) < CurrentTime - 7200 then
+		elseif tonumber(readfile("InfernoXWebhooking.txt")) < CurrentTime - 1 then
 			writefile("InfernoXWebhooking.txt", CurrentTime)
 			print("[Inferno X] Debug: Webhook Delay Set at "..CurrentTime)
 			Webhook = GlobalWebhook
