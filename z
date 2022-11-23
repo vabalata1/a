@@ -201,7 +201,7 @@ local function CreateWindow()
 		Callback = function(x)
 			WalkSpeed = x
 			game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = x
-		end,
+		end
 	})
 
 	Universal:CreateSlider({
