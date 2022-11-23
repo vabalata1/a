@@ -187,7 +187,7 @@ local function CreateWindow()
 
 		Universal:CreateSection("")
 
-
+	local Section = Universal:CreateSection("Player")
 	local WalkSpeed = 0
 	local JumpPower = 0
 
