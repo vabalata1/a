@@ -188,7 +188,7 @@ local function CreateWindow()
 		Universal:CreateSection("")
 
 
-local Tab = Window:CreateTab("Player Tab", 11606717205)
+local Universal = Window:CreateTab("Player Tab", 11606717205)
 local Section = Universal:CreateSection("Player")
 	local WalkSpeed = 0
 	local JumpPower = 0
@@ -270,7 +270,7 @@ local Speed=50;loadstring(game:HttpGet("https://raw.githubusercontent.com/LegitH
 	})
 
 	
-	Tab:CreateSlider({
+	Universal:CreateSlider({
 		Name = "Fly Speed",
 		Range = {0, 1000},
 		Increment = 1,
