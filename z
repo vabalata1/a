@@ -185,7 +185,8 @@ local function CreateWindow()
 
 
 		Universal:CreateSection("")
-
+		
+return(function(Window)
 		local Section = Universal:CreateSection("Player")
 		local WalkSpeed = 0
 		local JumpPower = 0
@@ -296,6 +297,10 @@ game.Players.LocalPlayer.Character.Humanoid:GetPropertyChangedSignal("JumpPower"
     if not getgenv().LoopJumpPower then return end
     game.Players.LocalPlayer.Character.Humanoid.JumpPower = JumpPower
 end)
+
+
+
+end
 
 
 		local Credits = Window:CreateTab("Credits", 4483362458)
