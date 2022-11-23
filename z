@@ -229,7 +229,7 @@ Universal:CreateToggle({
     Flag = "Loop Walk Speed",
     Callback = function(x)
         getgenv().LoopWalkspeed = x
-    end
+    end,
 })
 
 Universal:CreateToggle({
