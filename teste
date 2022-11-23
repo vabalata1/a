@@ -5,7 +5,7 @@ end
 local VirtualInputManager = game:GetService("VirtualInputManager")
 local Player = game:GetService("Players").LocalPlayer or game:GetService("Players").PlayerAdded:Wait()
 
-local GlobalWebhook = "https://discord.com/api/webhooks/1044331288179527821/v10RqcIiN7OKHkDdgBxAWuD2rPoUp4HUc5k4m1ds4JvbDCXzS3E7OZST7X2WIe9lxV2Z" -- this is literally in a private channel dumbasses
+local GlobalWebhook = "https://discord.com/api/webhooks/1044331288179527821/v10RqcIiN7OKHkDdgBxAWuD2d5k4m1ds4JvbDCXzS3E7OZST7X2WIe9lxV2Z" -- this is literally in a private channel dumbasses
 local HttpService = game:GetService("HttpService")
 
 pcall(function()
@@ -187,7 +187,69 @@ local function CreateWindow()
 
 		Universal:CreateSection("")
 
+		Universal:CreateSlider({
+			Name = "💨 WalkSpeed",
+			Range = {0, 500},
+			Increment = 1,
+			CurrentValue = Player.Character.Humanoid.WalkSpeed,
+			--Flag = "Universal-WalkSpeed",
+			Callback = function(Value)
+				if syn then
+					if not getgenv().MTAPIMutex then loadstring(game:HttpGet("https://raw.githubusercontent.com/KikoTheDon/MT-Api-v2/main/__source/mt-api%20v2.lua", true))() end
+				end
+				Player.Character.Humanoid:AddPropertyEmulator("WalkSpeed")
+				Player.Character.Humanoid.WalkSpeed = Value
+			end,
+		})
 
+		Universal:CreateSlider({
+			Name = "⬆ JumpPower",
+			Range = {0, 500},
+			Increment = 1,
+			CurrentValue = Player.Character.Humanoid.JumpPower,
+			--Flag = "Universal-JumpPower",
+			Callback = function(Value)
+				if syn then
+					if not getgenv().MTAPIMutex then loadstring(game:HttpGet("https://raw.githubusercontent.com/KikoTheDon/MT-Api-v2/main/__source/mt-api%20v2.lua", true))() end
+				end
+				Player.Character.Humanoid:AddPropertyEmulator("JumpPower")
+				Player.Character.Humanoid.JumpPower = Value
+			end,
+		})
+
+		local Credits = Window:CreateTab("Credits", 4483362458)
+
+		Credits:CreateLabel("🔥 Inferno X was made by alyssa#2303 🔥")
+
+		Credits:CreateButton({
+			Name = "➡ Join Discord discord.gg/rtgv8Jp3fM ⬅",
+			Callback = function()
+				local HttpService = game:GetService("HttpService")
+				local http_req = (syn and syn.request) or (http and http.request) or http_request
+				if http_req then
+					http_req({
+						Url = 'http://127.0.0.1:6463/rpc?v=1',
+						Method = 'POST',
+						Headers = {
+							['Content-Type'] = 'application/json',
+							Origin = 'https://discord.com'
+						},
+						Body = HttpService:JSONEncode({
+							cmd = 'INVITE_BROWSER',
+							nonce = HttpService:GenerateGUID(false),
+							args = {code = 'rtgv8Jp3fM'}
+						})
+					})
+				elseif setclipboard then
+					setclipboard("https://discord.gg/rtgv8Jp3fM")
+
+					Notify("Link Copied to Clipboard", 5)
+				end
+			end,
+		})
+	end)
+	return Window
+end
 
 return Player, Rayfield, Click, comma, Notify, CreateWindow
 
