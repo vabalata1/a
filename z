@@ -189,7 +189,7 @@ local function CreateWindow()
 
 
 
-return(function(Window)
+
 	local Section = Universal:CreateSection("Player")
 	local WalkSpeed = 0
 	local JumpPower = 0
@@ -241,7 +241,7 @@ game.Players.LocalPlayer.Character.Humanoid:GetPropertyChangedSignal("JumpPower"
     game.Players.LocalPlayer.Character.Humanoid.JumpPower = JumpPower
 end)	
 	
-end
+
 	
 	
 	
