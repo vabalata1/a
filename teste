@@ -116,7 +116,7 @@ local function CreateWindow()
 		LoadingTitle = "Inferno X",
 		LoadingSubtitle = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name,
 		ConfigurationSaving = {
-			Enabled = true,
+			Enabled = false,
 			FolderName = "InfernoXConfig",
 			FileName = game.PlaceId
 		},
