@@ -187,6 +187,10 @@ local function CreateWindow()
 
 		Universal:CreateSection("")
 
+
+		local WalkSpeed = 0
+
+
 		Universal:CreateSlider({
 			Name = "💨 WalkSpeed",
 			Range = {0, 500},
