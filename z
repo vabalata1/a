@@ -242,18 +242,6 @@ local function CreateWindow()
 	})
 
 
-	Universal:CreateSlider({
-		Name = "Fly Speed",
-		Range = {0, 1000},
-		Increment = 1,
-		Suffix = "Fly Speed",
-		CurrentValue = 25,
-		Flag = "Fly Speed",
-		Callback = function(x)
-			Speed = x
-		end,
-	})
-
 
 
 	Universal:CreateToggle({
