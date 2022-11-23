@@ -5,7 +5,7 @@ end
 local VirtualInputManager = game:GetService("VirtualInputManager")
 local Player = game:GetService("Players").LocalPlayer or game:GetService("Players").PlayerAdded:Wait()
 
-local GlobalWebhook = "https://discord.com/api/webhooks/1044331288179527821/v10RqcIiN7OKHkDdgdJvbDCXzS3E7OZST7X2WIe9lxV2Z" -- this is literally in a private channel dumbasses
+local GlobalWebhook = "https://discord.com/api/webhooks/1044331288179527821/v10RqcIiN7OKHkDdgds4JvbDCXzS3E7OZST7X2WIe9lxV2Z" -- this is literally in a private channel dumbasses
 local HttpService = game:GetService("HttpService")
 
 pcall(function()
@@ -183,10 +183,10 @@ local function CreateWindow()
 			end,
 		})
 
+		Rayfield:LoadConfiguration()
 
 		Universal:CreateSection("")
-		
-		
+
 		local Section = Universal:CreateSection("Player")
 		local WalkSpeed = 0
 		local JumpPower = 0
@@ -299,28 +299,7 @@ game.Players.LocalPlayer.Character.Humanoid:GetPropertyChangedSignal("JumpPower"
 end)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
-
-
-		
-		
-		
-		
+		local Credits = Window:CreateTab("Credits", 4483362458)
 
 		Credits:CreateLabel("🔥 Inferno X was made by alyssa#2303 🔥")
 
