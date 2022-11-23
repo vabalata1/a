@@ -183,11 +183,9 @@ local function CreateWindow()
 			end,
 		})
 
-		Rayfield:LoadConfiguration()
 
 		Universal:CreateSection("")
 
-		local Universal = Window:CreateTab("Player Tab", 11606717205)
 		local Section = Universal:CreateSection("Player")
 		local WalkSpeed = 0
 		local JumpPower = 0
