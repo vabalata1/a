@@ -187,7 +187,7 @@ local function CreateWindow()
 
 		Universal:CreateSection("")
 
-	Tab:CreateSlider({
+	Universal:CreateSlider({
 		Name = "Walk Speed",
 		Range = {
 			0,
@@ -203,7 +203,7 @@ local function CreateWindow()
 		end
 	})
 
-	Tab:CreateSlider({
+	Universal:CreateSlider({
 		Name = "Jump Power",
 		Range = {
 			0,
@@ -219,7 +219,7 @@ local function CreateWindow()
 		end
 	})
 
-	Tab:CreateToggle({
+	Universal:CreateToggle({
 		Name = "Loop Walk Speed",
 		CurrentValue = false,
 		Flag = "Loop Walk Speed",
@@ -228,7 +228,7 @@ local function CreateWindow()
 		end
 	})
 
-	Tab:CreateToggle({
+	Universal:CreateToggle({
 		Name = "Loop Jump Power",
 		CurrentValue = false,
 		Flag = "Loop Jump Power",
