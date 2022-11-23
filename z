@@ -187,6 +187,8 @@ local function CreateWindow()
 
 		Universal:CreateSection("")
 
+
+		return(function(Window)
 		local WalkSpeed = 0
 		local JumpPower = 0
 
@@ -222,40 +224,4 @@ local function CreateWindow()
 		end
 	})
 
-		local Credits = Window:CreateTab("Credits", 4483362458)
-
-		Credits:CreateLabel("🔥 Inferno X was made by alyssa#2303 🔥")
-
-		Credits:CreateButton({
-			Name = "➡ Join Discord discord.gg/rtgv8Jp3fM ⬅",
-			Callback = function()
-				local HttpService = game:GetService("HttpService")
-				local http_req = (syn and syn.request) or (http and http.request) or http_request
-				if http_req then
-					http_req({
-						Url = 'http://127.0.0.1:6463/rpc?v=1',
-						Method = 'POST',
-						Headers = {
-							['Content-Type'] = 'application/json',
-							Origin = 'https://discord.com'
-						},
-						Body = HttpService:JSONEncode({
-							cmd = 'INVITE_BROWSER',
-							nonce = HttpService:GenerateGUID(false),
-							args = {code = 'rtgv8Jp3fM'}
-						})
-					})
-				elseif setclipboard then
-					setclipboard("https://discord.gg/rtgv8Jp3fM")
-
-					Notify("Link Copied to Clipboard", 5)
-				end
-			end,
-		})
-	end)
-	return Window
-end
-
-return Player, Rayfield, Click, comma, Notify, CreateWindow
-
--- local Player, Rayfield, Click, comma, Notify, CreateWindow = loadstring(game:HttpGet("https://raw.githubusercontent.com/alyssagithub/Scripts/main/Inferno%20X%20Scripts/Variables.lua"))()
+end)		
