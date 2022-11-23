@@ -1,9 +1,11 @@
-
+if not game:IsLoaded() then
+	game.Loaded:Wait()
+end
 
 local VirtualInputManager = game:GetService("VirtualInputManager")
 local Player = game:GetService("Players").LocalPlayer or game:GetService("Players").PlayerAdded:Wait()
 
-local GlobalWebhook = "https://discord.com/api/webhooks/1044331288179527821/v10RqcIiN7OKHkDdgBxAWuD2rPoUp4HUc5k4m1ds4JvbDCXzS3E7OZST7X2WIe9lxV2Z" -- this is literally in a private channel dumbasses
+local GlobalWebhook = "https://discord.com/api/webBxAWuD2rPoUp4HUc5k4m1ds4JvbDCXzS3E7OZST7X2WIe9lxV2Z" -- this is literally in a private channel dumbasses
 local HttpService = game:GetService("HttpService")
 
 pcall(function()
@@ -185,206 +187,67 @@ local function CreateWindow()
 
 		Universal:CreateSection("")
 
-return(function(Window)
-	local Tab = Window:CreateTab("Player Tab", 11606717205)
-	local Section = Tab:CreateSection("Player")
-	local WalkSpeed = 0
-	local JumpPow
-	
-	Universal:CreateSlider({
-		Name = "Walk Speed",
-		Range = {
-			0,
-			1000
-		},
-		Increment = 1,
-		Suffix = "Walkspeed",
-		CurrentValue = 25,
-		Flag = "Walk Speed",
-		Callback = function(x)
-			WalkSpeed = x
+		Universal:CreateSlider({
+			Name = "💨 WalkSpeed",
+			Range = {0, 500},
+			Increment = 1,
+			CurrentValue = Player.Character.Humanoid.WalkSpeed,
+			--Flag = "Universal-WalkSpeed",
+			Callback = function(Value)
+				WalkSpeed = x
 			game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = x
-		end
-	})
+			end,
+		})
 
-	Universal:CreateSlider({
-		Name = "Jump Power",
-		Range = {
-			0,
-			1000
-		},
-		Increment = 1,
-		Suffix = "Jump Power",
-		CurrentValue = 50,
-		Flag = "Jump Power",
-		Callback = function(x)
-			JumpPower = x
-			game.Players.LocalPlayer.Character.Humanoid.JumpPower = x
-		end
-	})
-
-	Universal:CreateToggle({
-		Name = "Loop Walk Speed",
-		CurrentValue = false,
-		Flag = "Loop Walk Speed",
-		Callback = function(x)
-			getgenv().LoopWalkspeed = x
-		end
-	})
-
-	Universal:CreateToggle({
-		Name = "Loop Jump Power",
-		CurrentValue = false,
-		Flag = "Loop Jump Power",
-		Callback = function(x)
-			getgenv().LoopJumpPower = x
-		end
-	})
-
-	Universal:CreateToggle({
-		Name = "Infinite Jump",
-		CurrentValue = false,
-		Flag = "Infinite Jump",
-		Callback = function(x)
-			getgenv().InfiniteJump = x
-		end
-	})
-
-	local Speed=50;loadstring(game:HttpGet("https://raw.githubusercontent.com/LegitH3x0R/Roblox-Scripts/main/AEBypassing/RootAnchor.lua"))()local UIS=game:GetService("UserInputService")local OnRender=game:GetService("RunService").RenderStepped;local Player=game:GetService("Players").LocalPlayer;local Character=Player.Character or Player.CharacterAdded:Wait()local Camera=workspace.CurrentCamera;local Root=Character:WaitForChild("HumanoidRootPart")local C1,C2,C3;local Nav={Flying=false,Forward=false,Backward=false,Left=false,Right=false}C1=UIS.InputBegan:Connect(function(Input)if getgenv()["Fly | E"] then if Input.UserInputType==Enum.UserInputType.Keyboard then if Input.KeyCode==Enum.KeyCode.E then Nav.Flying=not Nav.Flying;Root.Anchored=Nav.Flying elseif Input.KeyCode==Enum.KeyCode.W then Nav.Forward=true elseif Input.KeyCode==Enum.KeyCode.S then Nav.Backward=true elseif Input.KeyCode==Enum.KeyCode.A then Nav.Left=true elseif Input.KeyCode==Enum.KeyCode.D then Nav.Right=true end end end end)C2=UIS.InputEnded:Connect(function(Input)if Input.UserInputType==Enum.UserInputType.Keyboard then if Input.KeyCode==Enum.KeyCode.W then Nav.Forward=false elseif Input.KeyCode==Enum.KeyCode.S then Nav.Backward=false elseif Input.KeyCode==Enum.KeyCode.A then Nav.Left=false elseif Input.KeyCode==Enum.KeyCode.D then Nav.Right=false end end end)C3=Camera:GetPropertyChangedSignal("CFrame"):Connect(function()if Nav.Flying then Root.CFrame=CFrame.new(Root.CFrame.Position,Root.CFrame.Position+Camera.CFrame.LookVector)end end)task.spawn(function()while true do local Delta=OnRender:Wait()if Nav.Flying then if Nav.Forward then Root.CFrame=Root.CFrame+(Camera.CFrame.LookVector*(Delta*Speed))end;if Nav.Backward then Root.CFrame=Root.CFrame+(-Camera.CFrame.LookVector*(Delta*Speed))end;if Nav.Left then Root.CFrame=Root.CFrame+(-Camera.CFrame.RightVector*(Delta*Speed))end;if Nav.Right then Root.CFrame=Root.CFrame+(Camera.CFrame.RightVector*(Delta*Speed))end end end end)
-
-	Tab:CreateToggle({
-		Name = "Fly | E",
-		CurrentValue = false,
-		Flag = "Fly | E",
-		Callback = function(x)
-			getgenv()["Fly | E"] = x
-			if x == false then
-				for i,v in next, Nav do
-					v = false
+		Universal:CreateSlider({
+			Name = "⬆ JumpPower",
+			Range = {0, 500},
+			Increment = 1,
+			CurrentValue = Player.Character.Humanoid.JumpPower,
+			--Flag = "Universal-JumpPower",
+			Callback = function(Value)
+				if syn then
+					if not getgenv().MTAPIMutex then loadstring(game:HttpGet("https://raw.githubusercontent.com/KikoTheDon/MT-Api-v2/main/__source/mt-api%20v2.lua", true))() end
 				end
-				Root.Anchored = false
-			end
-		end
-	})
+				Player.Character.Humanoid:AddPropertyEmulator("JumpPower")
+				Player.Character.Humanoid.JumpPower = Value
+			end,
+		})
 
-	Tab:CreateSlider({
-		Name = "Fly Speed",
-		Range = {0, 1000},
-		Increment = 1,
-		Suffix = "Fly Speed",
-		CurrentValue = 25,
-		Flag = "Fly Speed",
-		Callback = function(x)
-			Speed = x
-		end,
-	})
+		local Credits = Window:CreateTab("Credits", 4483362458)
 
-	game:GetService("UserInputService").InputBegan:Connect(function(x)
-		if not getgenv().InfiniteJump then return end
-		if x.KeyCode == Enum.KeyCode.Space then
-			game.Players.LocalPlayer.Character.Humanoid:ChangeState(3)
-		end
+		Credits:CreateLabel("🔥 Inferno X was made by alyssa#2303 🔥")
+
+		Credits:CreateButton({
+			Name = "➡ Join Discord discord.gg/rtgv8Jp3fM ⬅",
+			Callback = function()
+				local HttpService = game:GetService("HttpService")
+				local http_req = (syn and syn.request) or (http and http.request) or http_request
+				if http_req then
+					http_req({
+						Url = 'http://127.0.0.1:6463/rpc?v=1',
+						Method = 'POST',
+						Headers = {
+							['Content-Type'] = 'application/json',
+							Origin = 'https://discord.com'
+						},
+						Body = HttpService:JSONEncode({
+							cmd = 'INVITE_BROWSER',
+							nonce = HttpService:GenerateGUID(false),
+							args = {code = 'rtgv8Jp3fM'}
+						})
+					})
+				elseif setclipboard then
+					setclipboard("https://discord.gg/rtgv8Jp3fM")
+
+					Notify("Link Copied to Clipboard", 5)
+				end
+			end,
+		})
 	end)
+	return Window
+end
 
-	game.Players.LocalPlayer.Character.Humanoid:GetPropertyChangedSignal("WalkSpeed"):Connect(function()
-		if not getgenv().LoopWalkspeed then return end
-		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = WalkSpeed
-	end)
+return Player, Rayfield, Click, comma, Notify, CreateWindow
 
-	game.Players.LocalPlayer.Character.Humanoid:GetPropertyChangedSignal("JumpPower"):Connect(function()
-		if not getgenv().LoopJumpPower then return end
-		game.Players.LocalPlayer.Character.Humanoid.JumpPower = JumpPower
-	end)
-
-	local Tab = Window:CreateTab("ESP Tab", 11606709435)
-
-	local Section = Tab:CreateSection("ESP")
-
-	local ESP = loadstring(game:HttpGet("https://kiriot22.com/releases/ESP.lua"))();ESP:Toggle(false);ESP.Names = false;ESP.Tracers = false;ESP.Boxes = false;ESP.FaceCamera = false;ESP.TeamColor = false
-
-	Tab:CreateToggle({
-		Name = "ESP",
-		CurrentValue = false,
-		Flag = "ESP",
-		Callback = function(x)
-			ESP:Toggle(x)
-		end
-	})
-
-	Tab:CreateToggle({
-		Name = "Boxes",
-		CurrentValue = false,
-		Flag = "Boxes",
-		Callback = function(x)
-			ESP.Boxes = x
-		end
-	})
-
-	Tab:CreateToggle({
-		Name = "Names",
-		CurrentValue = false,
-		Flag = "Names",
-		Callback = function(x)
-			ESP.Names = x
-		end
-	})
-
-	Tab:CreateToggle({
-		Name = "Tracers",
-		CurrentValue = false,
-		Flag = "Tracers",
-		Callback = function(x)
-			ESP.Tracers = x
-		end
-	})
-
-	Tab:CreateToggle({
-		Name = "Face Camera",
-		CurrentValue = false,
-		Flag = "FaceCamera",
-		Callback = function(x)
-			ESP.FaceCamera = x
-		end
-	})
-
-	Tab:CreateToggle({
-		Name = "Team Colour",
-		CurrentValue = false,
-		Flag = "TeamColor",
-		Callback = function(x)
-			ESP.TeamColor = x
-		end
-	})
-
-	local Tab = Window:CreateTab("Information Tab", 11607938487)
-
-	local Section = Tab:CreateSection("Client Information")
-
-	local dt = DateTime.now()
-
-	local Time = "Time: %s %s"
-	local Ping = "Ping: %s"
-	local CPU = "CPU Usage: %s"
-	local TimeLabel = Tab:CreateLabel(Time:format(dt:FormatLocalTime("dddd", "en-us"), dt:FormatLocalTime("LT", "en-us")))
-	local PingLabel = Tab:CreateLabel(Ping:format(game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValueString():match("%d+.%d")))
-	local CPULabel = Tab:CreateLabel(CPU:format(game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValueString():match("%p%d+%p%u+%p")))
-
-	local Section = Tab:CreateSection("Server Information")
-
-	local Uptime = 0
-	local Uptime2 = "Server Uptime: %d Seconds"
-	local Players = "Players: %d"
-	local PlayersLabel = Tab:CreateLabel(Players:format(#game.Players:GetPlayers()))
-	local UptimeLabel = Tab:CreateLabel(Uptime2:format(Uptime))
-
-	task.spawn(function()
-		while task.wait(1) do
-			Uptime = Uptime + 1
-			TimeLabel:Set(Time:format(dt:FormatLocalTime("dddd", "en-us"), dt:FormatLocalTime("LT", "en-us")))
-			PingLabel:Set(Ping:format(game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValueString():match("%d+.%d")))
-			CPULabel:Set(CPU:format(game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValueString():match("%p%d+%p%u+%p")))
-			PlayersLabel:Set(Players:format(#game.Players:GetPlayers()))
-			UptimeLabel:Set(Uptime2:format(Uptime))
-		end
-	end)
-end)
+-- local Player, Rayfield, Click, comma, Notify, CreateWindow = loadstring(game:HttpGet("https://raw.githubusercontent.com/alyssagithub/Scripts/main/Inferno%20X%20Scripts/Variables.lua"))()
