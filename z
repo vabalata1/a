@@ -302,13 +302,13 @@ end)
 
 
 
-local ESP = Window:CreateTab("ESP Tab", 11606709435)
+local ESP1 = Window:CreateTab("ESP Tab", 11606709435)
 
 	local Section = ESP:CreateSection("ESP")
 
 	local ESP = loadstring(game:HttpGet("https://kiriot22.com/releases/ESP.lua"))();ESP:Toggle(false);ESP.Names = false;ESP.Tracers = false;ESP.Boxes = false;ESP.FaceCamera = false;ESP.TeamColor = false
 
-	ESP:CreateToggle({
+	ESP1:CreateToggle({
 		Name = "ESP",
 		CurrentValue = false,
 		Flag = "ESP",
@@ -319,6 +319,14 @@ local ESP = Window:CreateTab("ESP Tab", 11606709435)
 
 
 
+	ESP1:CreateToggle({
+		Name = "Boxes",
+		CurrentValue = false,
+		Flag = "Boxes",
+		Callback = function(x)
+			ESP.Boxes = x
+		end
+	})
 
 
 
