@@ -121,9 +121,9 @@ local function CreateWindow()
 			FileName = game.PlaceId
 		},
 		Discord = {
-			Enabled = true,
+			Enabled = false,
 			Invite = "rtgv8Jp3fM",
-			RememberJoins = true
+			RememberJoins = false
 		}
 	})
 
