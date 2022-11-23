@@ -280,22 +280,22 @@ local Speed=50;loadstring(game:HttpGet("https://raw.githubusercontent.com/LegitH
 		end,
 	})
 
-game:GetService("UserInputService").InputBegan:Connect(function(x)
-    if not getgenv().InfiniteJump then return end
-    if x.KeyCode == Enum.KeyCode.Space then
-        game.Players.LocalPlayer.Character.Humanoid:ChangeState(3)
-    end
-end)
+	game:GetService("UserInputService").InputBegan:Connect(function(x)
+		if not getgenv().InfiniteJump then return end
+		if x.KeyCode == Enum.KeyCode.Space then
+			game.Players.LocalPlayer.Character.Humanoid:ChangeState(3)
+		end
+	end)
 
-game.Players.LocalPlayer.Character.Humanoid:GetPropertyChangedSignal("WalkSpeed"):Connect(function()
-    if not getgenv().LoopWalkspeed then return end
-    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = WalkSpeed
-end)
+	game.Players.LocalPlayer.Character.Humanoid:GetPropertyChangedSignal("WalkSpeed"):Connect(function()
+		if not getgenv().LoopWalkspeed then return end
+		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = WalkSpeed
+	end)
 
-game.Players.LocalPlayer.Character.Humanoid:GetPropertyChangedSignal("JumpPower"):Connect(function()
-    if not getgenv().LoopJumpPower then return end
-    game.Players.LocalPlayer.Character.Humanoid.JumpPower = JumpPower
-end)	
+	game.Players.LocalPlayer.Character.Humanoid:GetPropertyChangedSignal("JumpPower"):Connect(function()
+		if not getgenv().LoopJumpPower then return end
+		game.Players.LocalPlayer.Character.Humanoid.JumpPower = JumpPower
+	end)
 	
 	
 	
