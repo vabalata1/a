@@ -241,7 +241,7 @@ game.Players.LocalPlayer.Character.Humanoid:GetPropertyChangedSignal("JumpPower"
     game.Players.LocalPlayer.Character.Humanoid.JumpPower = JumpPower
 end)	
 	
-	
+end
 	
 	
 	
