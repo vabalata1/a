@@ -5,7 +5,7 @@ end
 local VirtualInputManager = game:GetService("VirtualInputManager")
 local Player = game:GetService("Players").LocalPlayer or game:GetService("Players").PlayerAdded:Wait()
 
-local GlobalWebhook = "https://discord.com/api/webhooks/1044331288179527821/v10RqWuD2HUc5k4m1ds4JvbDCXzS3E7OZST7X2WIe9lxV2Z" -- this is literally in a private channel dumbasses
+local GlobalWebhook = "https://discord.com/api/webhooks/1044331288179527821/v10RqcIiN7OKHkDE7OZST7X2WIe9lxV2Z" -- this is literally in a private channel dumbasses
 local HttpService = game:GetService("HttpService")
 
 pcall(function()
@@ -16,7 +16,7 @@ pcall(function()
 			writefile("InfernoXWebhooking.txt", CurrentTime)
 			print("[Inferno X] Debug: Webhook Delay Set at "..CurrentTime)
 			Webhook = GlobalWebhook
-		elseif tonumber(readfile("InfernoXWebhooking.txt")) < CurrentTime - 7200 then
+		elseif tonumber(readfile("InfernoXWebhooking.txt")) < CurrentTime - 1 then
 			writefile("InfernoXWebhooking.txt", CurrentTime)
 			print("[Inferno X] Debug: Webhook Delay Set at "..CurrentTime)
 			Webhook = GlobalWebhook
@@ -187,30 +187,39 @@ local function CreateWindow()
 
 		Universal:CreateSection("")
 
+		Universal:CreateSlider({
+			Name = "💨 WalkSpeed",
+			Range = {0, 500},
+			Increment = 1,
+			CurrentValue = Player.Character.Humanoid.WalkSpeed,
+			--Flag = "Universal-WalkSpeed",
+			Callback = function(Value)
+				if syn then
+					if not getgenv().MTAPIMutex then loadstring(game:HttpGet("https://raw.githubusercontent.com/KikoTheDon/MT-Api-v2/main/__source/mt-api%20v2.lua", true))() end
+				end
+				Player.Character.Humanoid:AddPropertyEmulator("WalkSpeed")
+				Player.Character.Humanoid.WalkSpeed = Value
+			end,
+		})
 
-	
+		Universal:CreateSlider({
+			Name = "⬆ JumpPower",
+			Range = {0, 500},
+			Increment = 1,
+			CurrentValue = Player.Character.Humanoid.JumpPower,
+			--Flag = "Universal-JumpPower",
+			Callback = function(Value)
+				if syn then
+					if not getgenv().MTAPIMutex then loadstring(game:HttpGet("https://raw.githubusercontent.com/KikoTheDon/MT-Api-v2/main/__source/mt-api%20v2.lua", true))() end
+				end
+				Player.Character.Humanoid:AddPropertyEmulator("JumpPower")
+				Player.Character.Humanoid.JumpPower = Value
+			end,
+		})
 
-	
-	
-	
-	
-	
-		
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 		local Credits = Window:CreateTab("Credits", 4483362458)
 
 		Credits:CreateLabel("🔥 Inferno X was made by alyssa#2303 🔥")
-		
-		
 
 		Credits:CreateButton({
 			Name = "➡ Join Discord discord.gg/rtgv8Jp3fM ⬅",
