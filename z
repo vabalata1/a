@@ -187,35 +187,55 @@ local function CreateWindow()
 
 		Universal:CreateSection("")
 
-		Universal:CreateSlider({
-			Name = "💨 WalkSpeed",
-			Range = {0, 500},
-			Increment = 1,
-			CurrentValue = Player.Character.Humanoid.WalkSpeed,
-			--Flag = "Universal-WalkSpeed",
-			Callback = function(Value)
-				if syn then
-					if not getgenv().MTAPIMutex then loadstring(game:HttpGet("https://raw.githubusercontent.com/KikoTheDon/MT-Api-v2/main/__source/mt-api%20v2.lua", true))() end
-				end
-				Player.Character.Humanoid:AddPropertyEmulator("WalkSpeed")
-				Player.Character.Humanoid.WalkSpeed = Value
-			end,
-		})
+	Tab:CreateSlider({
+		Name = "Walk Speed",
+		Range = {
+			0,
+			1000
+		},
+		Increment = 1,
+		Suffix = "Walkspeed",
+		CurrentValue = 25,
+		Flag = "Walk Speed",
+		Callback = function(x)
+			WalkSpeed = x
+			game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = x
+		end
+	})
 
-		Universal:CreateSlider({
-			Name = "⬆ JumpPower",
-			Range = {0, 500},
-			Increment = 1,
-			CurrentValue = Player.Character.Humanoid.JumpPower,
-			--Flag = "Universal-JumpPower",
-			Callback = function(Value)
-				if syn then
-					if not getgenv().MTAPIMutex then loadstring(game:HttpGet("https://raw.githubusercontent.com/KikoTheDon/MT-Api-v2/main/__source/mt-api%20v2.lua", true))() end
-				end
-				Player.Character.Humanoid:AddPropertyEmulator("JumpPower")
-				Player.Character.Humanoid.JumpPower = Value
-			end,
-		})
+	Tab:CreateSlider({
+		Name = "Jump Power",
+		Range = {
+			0,
+			1000
+		},
+		Increment = 1,
+		Suffix = "Jump Power",
+		CurrentValue = 50,
+		Flag = "Jump Power",
+		Callback = function(x)
+			JumpPower = x
+			game.Players.LocalPlayer.Character.Humanoid.JumpPower = x
+		end
+	})
+
+	Tab:CreateToggle({
+		Name = "Loop Walk Speed",
+		CurrentValue = false,
+		Flag = "Loop Walk Speed",
+		Callback = function(x)
+			getgenv().LoopWalkspeed = x
+		end
+	})
+
+	Tab:CreateToggle({
+		Name = "Loop Jump Power",
+		CurrentValue = false,
+		Flag = "Loop Jump Power",
+		Callback = function(x)
+			getgenv().LoopJumpPower = x
+		end
+	})
 
 		local Credits = Window:CreateTab("Credits", 4483362458)
 
