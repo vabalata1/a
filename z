@@ -186,7 +186,7 @@ local function CreateWindow()
 
 		Universal:CreateSection("")
 		
-		return(function(Window)
+		
 		local Section = Universal:CreateSection("Player")
 		local WalkSpeed = 0
 		local JumpPower = 0
@@ -328,7 +328,7 @@ local ESP = Window:CreateTab("ESP Tab", 11606709435)
 
 
 
-end
+
 
 
 		local Credits = Window:CreateTab("Credits", 4483362458)
