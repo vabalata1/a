@@ -303,6 +303,7 @@ local Section = Universal:CreateSection("Player")
 
 
 
+
 		local Credits = Window:CreateTab("Credits", 4483362458)
 
 		Credits:CreateLabel("🔥 Inferno X was made by alyssa#2303 🔥")
