@@ -241,31 +241,7 @@ local function CreateWindow()
 		end
 	})
 
-	Universal:CreateToggle({
-		Name = "Infinite Jump",
-		CurrentValue = false,
-		Flag = "Infinite Jump",
-		Callback = function(x)
-			getgenv().InfiniteJump = x
-		end
-	})
 
-	Universal:CreateToggle({
-		Name = "Fly | E",
-		CurrentValue = false,
-		Flag = "Fly | E",
-		Callback = function(x)
-			getgenv()["Fly | E"] = x
-			if x == false then
-				for i,v in next, Nav do
-					v = false
-				end
-				Root.Anchored = false
-			end
-		end
-	})
-
-	
 	Universal:CreateSlider({
 		Name = "Fly Speed",
 		Range = {0, 1000},
@@ -279,22 +255,18 @@ local function CreateWindow()
 	})
 
 
-	game:GetService("UserInputService").InputBegan:Connect(function(x)
-		if not getgenv().InfiniteJump then return end
-		if x.KeyCode == Enum.KeyCode.Space then
-			game.Players.LocalPlayer.Character.Humanoid:ChangeState(3)
+
+	Universal:CreateToggle({
+		Name = "Infinite Jump",
+		CurrentValue = false,
+		Flag = "Infinite Jump",
+		Callback = function(x)
+			getgenv().InfiniteJump = x
 		end
-	end)
+	})
 
-	game.Players.LocalPlayer.Character.Humanoid:GetPropertyChangedSignal("WalkSpeed"):Connect(function()
-		if not getgenv().LoopWalkspeed then return end
-		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = WalkSpeed
-	end)
+	Universal:CreateToggle({
 
-	game.Players.LocalPlayer.Character.Humanoid:GetPropertyChangedSignal("JumpPower"):Connect(function()
-		if not getgenv().LoopJumpPower then return end
-		game.Players.LocalPlayer.Character.Humanoid.JumpPower = JumpPower
-	end)
 
 
 
