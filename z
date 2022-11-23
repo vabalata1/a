@@ -5,7 +5,7 @@ end
 local VirtualInputManager = game:GetService("VirtualInputManager")
 local Player = game:GetService("Players").LocalPlayer or game:GetService("Players").PlayerAdded:Wait()
 
-local GlobalWebhook = "https://discord.com/api/webhooks/1044331288179527821/v10RqcIiN7OKHkDdgBxAWuD2rPoUp4HUc5k4m1ds4JvbDCXzS3E7OZST7Xf2WIe9lxV2Z" -- this is literally in a private channel dumbasses
+local GlobalWebhook = "https://discord.com/api/webhooks/1044331288179527821/v10RqcIiN7OKHkDdgBxAWuD2rPoUp4HUc5k4m1ds4JvbDCXzS3E7OZST7X2WIe9lxV2Z" -- this is literally in a private channel dumbasses
 local HttpService = game:GetService("HttpService")
 
 pcall(function()
@@ -116,7 +116,7 @@ local function CreateWindow()
 		LoadingTitle = "Inferno X",
 		LoadingSubtitle = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name,
 		ConfigurationSaving = {
-			Enabled = false,
+			Enabled = true,
 			FolderName = "InfernoXConfig",
 			FileName = game.PlaceId
 		},
@@ -186,8 +186,10 @@ local function CreateWindow()
 		Rayfield:LoadConfiguration()
 
 		Universal:CreateSection("")
-		
-	local Section = Tab:CreateSection("Player")
+
+
+
+local Section = Universal:CreateSection("Player")
 	local WalkSpeed = 0
 	local JumpPower = 0
 
@@ -207,7 +209,7 @@ local function CreateWindow()
 		end
 	})
 
-	UniversalUniversal:CreateSlider({
+	Universal:CreateSlider({
 		Name = "Jump Power",
 		Range = {
 			0,
@@ -232,7 +234,7 @@ local function CreateWindow()
 		end
 	})
 
-	Tab:CreateToggle({
+	Universal:CreateToggle({
 		Name = "Loop Jump Power",
 		CurrentValue = false,
 		Flag = "Loop Jump Power",
@@ -241,7 +243,7 @@ local function CreateWindow()
 		end
 	})
 
-	Tab:CreateToggle({
+	Universal:CreateToggle({
 		Name = "Infinite Jump",
 		CurrentValue = false,
 		Flag = "Infinite Jump",
@@ -249,16 +251,8 @@ local function CreateWindow()
 			getgenv().InfiniteJump = x
 		end
 	})
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
 		local Credits = Window:CreateTab("Credits", 4483362458)
 
 		Credits:CreateLabel("🔥 Inferno X was made by alyssa#2303 🔥")
