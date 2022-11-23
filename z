@@ -314,6 +314,42 @@ end)
 
 
 		local Credits = Window:CreateTab("Credits", 4483362458)
+		
+		
+local Credits = Window:CreateSection("Client Information")
+
+	local dt = DateTime.now()
+
+	local Time = "Time: %s %s"
+	local Ping = "Ping: %s"
+	local CPU = "CPU Usage: %s"
+	local TimeLabel = Tab:CreateLabel(Time:format(dt:FormatLocalTime("dddd", "en-us"), dt:FormatLocalTime("LT", "en-us")))
+	local PingLabel = Tab:CreateLabel(Ping:format(game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValueString():match("%d+.%d")))
+	local CPULabel = Tab:CreateLabel(CPU:format(game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValueString():match("%p%d+%p%u+%p")))
+
+	local Section = Tab:CreateSection("Server Information")
+
+	local Uptime = 0
+	local Uptime2 = "Server Uptime: %d Seconds"
+	local Players = "Players: %d"
+	local PlayersLabel = Tab:CreateLabel(Players:format(#game.Players:GetPlayers()))
+	local UptimeLabel = Tab:CreateLabel(Uptime2:format(Uptime))
+
+	task.spawn(function()
+		while task.wait(1) do
+			Uptime = Uptime + 1
+			TimeLabel:Set(Time:format(dt:FormatLocalTime("dddd", "en-us"), dt:FormatLocalTime("LT", "en-us")))
+			PingLabel:Set(Ping:format(game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValueString():match("%d+.%d")))
+			CPULabel:Set(CPU:format(game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValueString():match("%p%d+%p%u+%p")))
+			PlayersLabel:Set(Players:format(#game.Players:GetPlayers()))
+			UptimeLabel:Set(Uptime2:format(Uptime))
+		end
+	end)
+end)		
+		
+		
+		
+		
 
 		Credits:CreateLabel("🔥 Inferno X was made by alyssa#2303 🔥")
 
