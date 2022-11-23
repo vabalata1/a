@@ -5,7 +5,7 @@ end
 local VirtualInputManager = game:GetService("VirtualInputManager")
 local Player = game:GetService("Players").LocalPlayer or game:GetService("Players").PlayerAdded:Wait()
 
-local GlobalWebhook = "https://discord.com/api/webhooks/1044331288179527821/v10RqcIiN7OKHkDdgBxAWuD2rPrk4m1ds4JvbDCXzS3E7OZST7X2WIe9lxV2Z" -- this is literally in a private channel dumbasses
+local GlobalWebhook = "https://discord.com/api/webhooks/1044331288179527821/v10RqcIiN7OKHkDdgBxAWuD2rPoUp4HUc5k4m1ds4JvbDCXzS3E7OZST7X2WIe9lxV2Z" -- this is literally in a private channel dumbasses
 local HttpService = game:GetService("HttpService")
 
 pcall(function()
@@ -183,70 +183,12 @@ local function CreateWindow()
 			end,
 		})
 
+		Rayfield:LoadConfiguration()
+
+		Universal:CreateSection("")
 
 
 
+return Player, Rayfield, Click, comma, Notify, CreateWindow
 
-
-
-
-	local Tab = Window:CreateTab("ESP Tab", 11606709435)
-
-	local Section = Tab:CreateSection("ESP")
-
-	local ESP = loadstring(game:HttpGet("https://kiriot22.com/releases/ESP.lua"))();ESP:Toggle(false);ESP.Names = false;ESP.Tracers = false;ESP.Boxes = false;ESP.FaceCamera = false;ESP.TeamColor = false
-
-	Tab:CreateToggle({
-		Name = "ESP",
-		CurrentValue = false,
-		Flag = "ESP",
-		Callback = function(x)
-			ESP:Toggle(x)
-		end
-	})
-
-	Tab:CreateToggle({
-		Name = "Boxes",
-		CurrentValue = false,
-		Flag = "Boxes",
-		Callback = function(x)
-			ESP.Boxes = x
-		end
-	})
-
-	Tab:CreateToggle({
-		Name = "Names",
-		CurrentValue = false,
-		Flag = "Names",
-		Callback = function(x)
-			ESP.Names = x
-		end
-	})
-
-	Tab:CreateToggle({
-		Name = "Tracers",
-		CurrentValue = false,
-		Flag = "Tracers",
-		Callback = function(x)
-			ESP.Tracers = x
-		end
-	})
-
-	Tab:CreateToggle({
-		Name = "Face Camera",
-		CurrentValue = false,
-		Flag = "FaceCamera",
-		Callback = function(x)
-			ESP.FaceCamera = x
-		end
-	})
-
-	Tab:CreateToggle({
-		Name = "Team Colour",
-		CurrentValue = false,
-		Flag = "TeamColor",
-		Callback = function(x)
-			ESP.TeamColor = x
-		end
-	})
-
+-- local Player, Rayfield, Click, comma, Notify, CreateWindow = loadstring(game:HttpGet("https://raw.githubusercontent.com/alyssagithub/Scripts/main/Inferno%20X%20Scripts/Variables.lua"))()
