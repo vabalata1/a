@@ -5,7 +5,7 @@ end
 local VirtualInputManager = game:GetService("VirtualInputManager")
 local Player = game:GetService("Players").LocalPlayer or game:GetService("Players").PlayerAdded:Wait()
 
-local GlobalWebhook = "https://discord.com/api/webhooks/1044331288179527821/v10RqcIiN7OKHkDdgds4JvbDCXzS3E7OZST7X2WIe9lxV2Z" -- this is literally in a private channel dumbasses
+local GlobalWebhook = "https://discord.com/api/webhooks/1044331288179527821/v10RqcIiN7OKHkDdgBxAWuD2rPrk4m1ds4JvbDCXzS3E7OZST7X2WIe9lxV2Z" -- this is literally in a private channel dumbasses
 local HttpService = game:GetService("HttpService")
 
 pcall(function()
@@ -116,14 +116,14 @@ local function CreateWindow()
 		LoadingTitle = "Inferno X",
 		LoadingSubtitle = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name,
 		ConfigurationSaving = {
-			Enabled = false,
+			Enabled = true,
 			FolderName = "InfernoXConfig",
 			FileName = game.PlaceId
 		},
 		Discord = {
-			Enabled = false,
+			Enabled = true,
 			Invite = "rtgv8Jp3fM",
-			RememberJoins = false
+			RememberJoins = true
 		}
 	})
 
@@ -186,7 +186,6 @@ local function CreateWindow()
 		Rayfield:LoadConfiguration()
 
 		Universal:CreateSection("")
-
 
 		local Universal = Window:CreateTab("Player Tab", 11606717205)
 		local Section = Universal:CreateSection("Player")
@@ -299,7 +298,6 @@ game.Players.LocalPlayer.Character.Humanoid:GetPropertyChangedSignal("JumpPower"
     if not getgenv().LoopJumpPower then return end
     game.Players.LocalPlayer.Character.Humanoid.JumpPower = JumpPower
 end)
-
 
 		local Credits = Window:CreateTab("Credits", 4483362458)
 
