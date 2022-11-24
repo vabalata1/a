@@ -1,4 +1,0 @@
-local Player, Rayfield, Click, comma, Notify, CreateWindow = loadstring(game:HttpGet("https://raw.githubusercontent.com/vabalata1/a/main/teste"))()
-
-
-local Window = CreateWindow()
