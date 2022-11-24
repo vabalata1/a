@@ -2,7 +2,7 @@ local Player, Rayfield, Click, comma, Notify, CreateWindow = loadstring(game:Htt
 
 local Window = CreateWindow()
 
-local Farm = Window:CreateTab("Farm", 4483362458) -- Title, Image
+local Farm = Window:CreateTab("Farm", 11654608093) -- Title, Image
 
 local Toggle = Farm:CreateToggle({
 	Name = "Buy Speed",
