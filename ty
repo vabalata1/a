@@ -410,6 +410,8 @@ end)
 
 		Credits:CreateLabel("👎 L-HUB was made by .L.#7650 👎")
 
+		Credits:CreateSection("")
+
 		Credits:CreateButton({
 			Name = "Join Discord",
 			Callback = function()
