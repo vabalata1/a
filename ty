@@ -12,12 +12,12 @@ pcall(function()
 	if isfile and writefile and readfile then
 		local CurrentTime = tick()
 
-		if not isfile("InfernoXWebhooking.txt") then
-			writefile("L-HUBwebhooking.txt", CurrentTime)
+		if not isfile("L-HUBWebhooking.txt") then
+			writefile("InfernoXWebhooking.txt", CurrentTime)
 			print("[Inferno X] Debug: Webhook Delay Set at "..CurrentTime)
 			Webhook = GlobalWebhook
-		elseif tonumber(readfile("L-HUBwebhooking.txt")) < CurrentTime - 1 then
-			writefile("InfernoXWebhooking.txt", CurrentTime)
+		elseif tonumber(readfile("InfernoXWebhooking.txt")) < CurrentTime - 1 then
+			writefile("L-HUBWebhooking.txt", CurrentTime)
 			print("[Inferno X] Debug: Webhook Delay Set at "..CurrentTime)
 			Webhook = GlobalWebhook
 		else
@@ -409,9 +409,6 @@ end)
 		local Credits = Window:CreateTab("Credits", 4483362458)
 
 		Credits:CreateLabel("👎 L-HUB was made by .L.#7650 👎")
-
-		Credits:CreateSection("Server : https://discord.gg/7TC8dchz6C")
-
 
 		Credits:CreateButton({
 			Name = "Join Discord",
