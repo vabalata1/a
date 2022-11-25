@@ -13,12 +13,12 @@ pcall(function()
 		local CurrentTime = tick()
 
 		if not isfile("L-HUBWebhooking.txt") then
-			writefile("InfernoXWebhooking.txt", CurrentTime)
-			print("[Inferno X] Debug: Webhook Delay Set at "..CurrentTime)
-			Webhook = GlobalWebhook
-		elseif tonumber(readfile("InfernoXWebhooking.txt")) < CurrentTime - 1 then
 			writefile("L-HUBWebhooking.txt", CurrentTime)
-			print("[Inferno X] Debug: Webhook Delay Set at "..CurrentTime)
+			print("[👎L-HUB👎] Debug: Webhook Delay Set at "..CurrentTime)
+			Webhook = GlobalWebhook
+		elseif tonumber(readfile("L-HUBWebhooking.txt")) < CurrentTime - 1 then
+			writefile("L-HUBWebhooking.txt", CurrentTime)
+			print("[👎L-HUB👎] Debug: Webhook Delay Set at "..CurrentTime)
 			Webhook = GlobalWebhook
 		else
 			Webhook = nil
@@ -102,7 +102,7 @@ end
 
 local function Notify(Message, Duration)
 	Rayfield:Notify({
-		Title = "L-HUB",
+		Title = "👎L-HUB👎",
 		Content = Message,
 		Duration = Duration,
 		Image = 4483362458,
@@ -112,11 +112,11 @@ end
 
 local function CreateWindow()
 	local Window = Rayfield:CreateWindow({
-		Name = "L-HUB | "..game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name,
-		LoadingTitle = "L-HUB",
+		Name = "👎L-HUB👎 | "..game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name,
+		LoadingTitle = "👎L-HUB👎",
 		LoadingSubtitle = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name,
 		ConfigurationSaving = {
-			Enabled = false,
+			Enabled = true,
 			FolderName = "L-HUBConfig",
 			FileName = game.PlaceId
 		},
@@ -409,8 +409,6 @@ end)
 		local Credits = Window:CreateTab("Credits", 4483362458)
 
 		Credits:CreateLabel("👎 L-HUB was made by .L.#7650 👎")
-
-		Credits:CreateSection("Server : https://discord.gg/7TC8dchz6C")
 
 		Credits:CreateButton({
 			Name = "Join Discord",
