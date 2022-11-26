@@ -110,194 +110,6 @@ local function Notify(Message, Duration)
 	})
 end
 
-local function CreateWindow()
-	local Window = Rayfield:CreateWindow({
-		Name = "👎L-HUB👎 | "..game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name,
-		LoadingTitle = "👎L-HUB👎",
-		LoadingSubtitle = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name,
-		ConfigurationSaving = {
-			Enabled = true,
-			FolderName = "L-HUBConfig",
-			FileName = game.PlaceId
-		},
-		Discord = {
-			Enabled = true,
-			Invite = "7TC8dchz6C",
-			RememberJoins = true
-		}
-	})
-
-	task.defer(function()
-		task.wait(1.5)
-		local Universal = Window:CreateTab("Universal", 4483362458)
-
-		Universal:CreateToggle({
-			Name = "🚫 Anti-AFK",
-			CurrentValue = false,
-			Flag = "Universal-AntiAFK",
-			Callback = function(Value)
-				if Value then
-					local VirtualUser = game:GetService("VirtualUser")
-					Player.Idled:Connect(function()
-						VirtualUser:CaptureController()
-						VirtualUser:ClickButton2(Vector2.new())
-					end)
-				end
-			end,
-		})
-
-		Universal:CreateToggle({
-			Name = "🔁 Auto Rejoin",
-			CurrentValue = false,
-			Flag = "Universal-AutoRejoin",
-			Callback = function(Value)
-				if Value then
-					repeat task.wait() until game.CoreGui:FindFirstChild('RobloxPromptGui')
-
-					local lp,po,ts = game:GetService('Players').LocalPlayer,game.CoreGui.RobloxPromptGui.promptOverlay,game:GetService('TeleportService')
-
-					po.ChildAdded:connect(function(a)
-						if a.Name == 'ErrorPrompt' then
-							while true do
-								ts:Teleport(game.PlaceId)
-								task.wait(2)
-							end
-						end
-					end)
-				end
-			end,
-		})
-
-		Universal:CreateToggle({
-			Name = "📶 Auto Re-Execute",
-			CurrentValue = false,
-			Flag = "Universal-AutoRe-Execute",
-			Callback = function(Value)
-				if Value then
-					local queueteleport = (syn and syn.queue_on_teleport) or queue_on_teleport or (fluxus and fluxus.queue_on_teleport)
-
-					if queueteleport then
-						queueteleport('loadstring(game:HttpGet("https://raw.githubusercontent.com/alyssagithub/Scripts/main/Script%20Hub%20-%20Inferno%20X.lua"))()')
-					end
-				end
-			end,
-		})
-		
-		Rayfield:LoadConfiguration()
-
-		Universal:CreateSection("")
-
-
-		local WalkSpeed = 0
-		local JumpPower = 0
-
-	Universal:CreateSlider({
-		Name = "Walk Speed",
-		Range = {
-			0,
-			1000
-		},
-		Increment = 1,
-		Suffix = "Walkspeed",
-		CurrentValue = 25,
-		Flag = "Walk Speed",
-		Callback = function(x)
-			WalkSpeed = x
-			game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = x
-		end
-	})
-
-
-	Universal:CreateSlider({
-		Name = "Jump Power",
-		Range = {
-			0,
-			1000
-		},
-		Increment = 1,
-		Suffix = "Jump Power",
-		CurrentValue = 50,
-		Flag = "Jump Power",
-		Callback = function(x)
-			JumpPower = x
-			game.Players.LocalPlayer.Character.Humanoid.JumpPower = x
-		end
-	})
-
-Universal:CreateToggle({
-    Name = "Loop Walk Speed",
-    CurrentValue = false,
-    Flag = "Loop Walk Speed",
-    Callback = function(x)
-        getgenv().LoopWalkspeed = x
-    end
-})
-
-Universal:CreateToggle({
-    Name = "Loop Jump Power",
-    CurrentValue = false,
-    Flag = "Loop Jump Power",
-    Callback = function(x)
-        getgenv().LoopJumpPower = x
-    end
-})
-
-Universal:CreateToggle({
-    Name = "Infinite Jump",
-    CurrentValue = false,
-    Flag = "Infinite Jump",
-    Callback = function(x)
-        getgenv().InfiniteJump = x
-    end
-})
-
-
-local Speed=50;loadstring(game:HttpGet("https://raw.githubusercontent.com/LegitH3x0R/Roblox-Scripts/main/AEBypassing/RootAnchor.lua"))()local UIS=game:GetService("UserInputService")local OnRender=game:GetService("RunService").RenderStepped;local Player=game:GetService("Players").LocalPlayer;local Character=Player.Character or Player.CharacterAdded:Wait()local Camera=workspace.CurrentCamera;local Root=Character:WaitForChild("HumanoidRootPart")local C1,C2,C3;local Nav={Flying=false,Forward=false,Backward=false,Left=false,Right=false}C1=UIS.InputBegan:Connect(function(Input)if getgenv()["Fly | E"] then if Input.UserInputType==Enum.UserInputType.Keyboard then if Input.KeyCode==Enum.KeyCode.E then Nav.Flying=not Nav.Flying;Root.Anchored=Nav.Flying elseif Input.KeyCode==Enum.KeyCode.W then Nav.Forward=true elseif Input.KeyCode==Enum.KeyCode.S then Nav.Backward=true elseif Input.KeyCode==Enum.KeyCode.A then Nav.Left=true elseif Input.KeyCode==Enum.KeyCode.D then Nav.Right=true end end end end)C2=UIS.InputEnded:Connect(function(Input)if Input.UserInputType==Enum.UserInputType.Keyboard then if Input.KeyCode==Enum.KeyCode.W then Nav.Forward=false elseif Input.KeyCode==Enum.KeyCode.S then Nav.Backward=false elseif Input.KeyCode==Enum.KeyCode.A then Nav.Left=false elseif Input.KeyCode==Enum.KeyCode.D then Nav.Right=false end end end)C3=Camera:GetPropertyChangedSignal("CFrame"):Connect(function()if Nav.Flying then Root.CFrame=CFrame.new(Root.CFrame.Position,Root.CFrame.Position+Camera.CFrame.LookVector)end end)task.spawn(function()while true do local Delta=OnRender:Wait()if Nav.Flying then if Nav.Forward then Root.CFrame=Root.CFrame+(Camera.CFrame.LookVector*(Delta*Speed))end;if Nav.Backward then Root.CFrame=Root.CFrame+(-Camera.CFrame.LookVector*(Delta*Speed))end;if Nav.Left then Root.CFrame=Root.CFrame+(-Camera.CFrame.RightVector*(Delta*Speed))end;if Nav.Right then Root.CFrame=Root.CFrame+(Camera.CFrame.RightVector*(Delta*Speed))end end end end)
-
-Universal:CreateToggle({
-    Name = "Fly | E",
-    CurrentValue = false,
-    Flag = "Fly | E",
-    Callback = function(x)
-        getgenv()["Fly | E"] = x
-        if x == false then
-            for i,v in next, Nav do
-                v = false
-            end
-            Root.Anchored = false
-        end
-    end
-})
-
-Universal:CreateSlider({
-    Name = "Fly Speed",
-    Range = {0, 1000},
-    Increment = 1,
-    Suffix = "Fly Speed",
-    CurrentValue = 25,
-    Flag = "Fly Speed",
-    Callback = function(x)
-        Speed = x
-    end,
-})
-
-game:GetService("UserInputService").InputBegan:Connect(function(x)
-    if not getgenv().InfiniteJump then return end
-    if x.KeyCode == Enum.KeyCode.Space then
-        game.Players.LocalPlayer.Character.Humanoid:ChangeState(3)
-    end
-end)
-
-game.Players.LocalPlayer.Character.Humanoid:GetPropertyChangedSignal("WalkSpeed"):Connect(function()
-    if not getgenv().LoopWalkspeed then return end
-    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = WalkSpeed
-end)
-
-game.Players.LocalPlayer.Character.Humanoid:GetPropertyChangedSignal("JumpPower"):Connect(function()
-    if not getgenv().LoopJumpPower then return end
-    game.Players.LocalPlayer.Character.Humanoid.JumpPower = JumpPower
-end)
-
 
 
 
@@ -510,6 +322,204 @@ local Esp = {}; do
         end
     end
 end
+
+
+
+
+
+
+
+local function CreateWindow()
+	local Window = Rayfield:CreateWindow({
+		Name = "👎L-HUB👎 | "..game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name,
+		LoadingTitle = "👎L-HUB👎",
+		LoadingSubtitle = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name,
+		ConfigurationSaving = {
+			Enabled = true,
+			FolderName = "L-HUBConfig",
+			FileName = game.PlaceId
+		},
+		Discord = {
+			Enabled = true,
+			Invite = "7TC8dchz6C",
+			RememberJoins = true
+		}
+	})
+
+	task.defer(function()
+		task.wait(1.5)
+		local Universal = Window:CreateTab("Universal", 4483362458)
+
+		Universal:CreateToggle({
+			Name = "🚫 Anti-AFK",
+			CurrentValue = false,
+			Flag = "Universal-AntiAFK",
+			Callback = function(Value)
+				if Value then
+					local VirtualUser = game:GetService("VirtualUser")
+					Player.Idled:Connect(function()
+						VirtualUser:CaptureController()
+						VirtualUser:ClickButton2(Vector2.new())
+					end)
+				end
+			end,
+		})
+
+		Universal:CreateToggle({
+			Name = "🔁 Auto Rejoin",
+			CurrentValue = false,
+			Flag = "Universal-AutoRejoin",
+			Callback = function(Value)
+				if Value then
+					repeat task.wait() until game.CoreGui:FindFirstChild('RobloxPromptGui')
+
+					local lp,po,ts = game:GetService('Players').LocalPlayer,game.CoreGui.RobloxPromptGui.promptOverlay,game:GetService('TeleportService')
+
+					po.ChildAdded:connect(function(a)
+						if a.Name == 'ErrorPrompt' then
+							while true do
+								ts:Teleport(game.PlaceId)
+								task.wait(2)
+							end
+						end
+					end)
+				end
+			end,
+		})
+
+		Universal:CreateToggle({
+			Name = "📶 Auto Re-Execute",
+			CurrentValue = false,
+			Flag = "Universal-AutoRe-Execute",
+			Callback = function(Value)
+				if Value then
+					local queueteleport = (syn and syn.queue_on_teleport) or queue_on_teleport or (fluxus and fluxus.queue_on_teleport)
+
+					if queueteleport then
+						queueteleport('loadstring(game:HttpGet("https://raw.githubusercontent.com/alyssagithub/Scripts/main/Script%20Hub%20-%20Inferno%20X.lua"))()')
+					end
+				end
+			end,
+		})
+		
+		Rayfield:LoadConfiguration()
+
+		Universal:CreateSection("")
+
+
+		local WalkSpeed = 0
+		local JumpPower = 0
+
+	Universal:CreateSlider({
+		Name = "Walk Speed",
+		Range = {
+			0,
+			1000
+		},
+		Increment = 1,
+		Suffix = "Walkspeed",
+		CurrentValue = 25,
+		Flag = "Walk Speed",
+		Callback = function(x)
+			WalkSpeed = x
+			game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = x
+		end
+	})
+
+
+	Universal:CreateSlider({
+		Name = "Jump Power",
+		Range = {
+			0,
+			1000
+		},
+		Increment = 1,
+		Suffix = "Jump Power",
+		CurrentValue = 50,
+		Flag = "Jump Power",
+		Callback = function(x)
+			JumpPower = x
+			game.Players.LocalPlayer.Character.Humanoid.JumpPower = x
+		end
+	})
+
+Universal:CreateToggle({
+    Name = "Loop Walk Speed",
+    CurrentValue = false,
+    Flag = "Loop Walk Speed",
+    Callback = function(x)
+        getgenv().LoopWalkspeed = x
+    end
+})
+
+Universal:CreateToggle({
+    Name = "Loop Jump Power",
+    CurrentValue = false,
+    Flag = "Loop Jump Power",
+    Callback = function(x)
+        getgenv().LoopJumpPower = x
+    end
+})
+
+Universal:CreateToggle({
+    Name = "Infinite Jump",
+    CurrentValue = false,
+    Flag = "Infinite Jump",
+    Callback = function(x)
+        getgenv().InfiniteJump = x
+    end
+})
+
+
+local Speed=50;loadstring(game:HttpGet("https://raw.githubusercontent.com/LegitH3x0R/Roblox-Scripts/main/AEBypassing/RootAnchor.lua"))()local UIS=game:GetService("UserInputService")local OnRender=game:GetService("RunService").RenderStepped;local Player=game:GetService("Players").LocalPlayer;local Character=Player.Character or Player.CharacterAdded:Wait()local Camera=workspace.CurrentCamera;local Root=Character:WaitForChild("HumanoidRootPart")local C1,C2,C3;local Nav={Flying=false,Forward=false,Backward=false,Left=false,Right=false}C1=UIS.InputBegan:Connect(function(Input)if getgenv()["Fly | E"] then if Input.UserInputType==Enum.UserInputType.Keyboard then if Input.KeyCode==Enum.KeyCode.E then Nav.Flying=not Nav.Flying;Root.Anchored=Nav.Flying elseif Input.KeyCode==Enum.KeyCode.W then Nav.Forward=true elseif Input.KeyCode==Enum.KeyCode.S then Nav.Backward=true elseif Input.KeyCode==Enum.KeyCode.A then Nav.Left=true elseif Input.KeyCode==Enum.KeyCode.D then Nav.Right=true end end end end)C2=UIS.InputEnded:Connect(function(Input)if Input.UserInputType==Enum.UserInputType.Keyboard then if Input.KeyCode==Enum.KeyCode.W then Nav.Forward=false elseif Input.KeyCode==Enum.KeyCode.S then Nav.Backward=false elseif Input.KeyCode==Enum.KeyCode.A then Nav.Left=false elseif Input.KeyCode==Enum.KeyCode.D then Nav.Right=false end end end)C3=Camera:GetPropertyChangedSignal("CFrame"):Connect(function()if Nav.Flying then Root.CFrame=CFrame.new(Root.CFrame.Position,Root.CFrame.Position+Camera.CFrame.LookVector)end end)task.spawn(function()while true do local Delta=OnRender:Wait()if Nav.Flying then if Nav.Forward then Root.CFrame=Root.CFrame+(Camera.CFrame.LookVector*(Delta*Speed))end;if Nav.Backward then Root.CFrame=Root.CFrame+(-Camera.CFrame.LookVector*(Delta*Speed))end;if Nav.Left then Root.CFrame=Root.CFrame+(-Camera.CFrame.RightVector*(Delta*Speed))end;if Nav.Right then Root.CFrame=Root.CFrame+(Camera.CFrame.RightVector*(Delta*Speed))end end end end)
+
+Universal:CreateToggle({
+    Name = "Fly | E",
+    CurrentValue = false,
+    Flag = "Fly | E",
+    Callback = function(x)
+        getgenv()["Fly | E"] = x
+        if x == false then
+            for i,v in next, Nav do
+                v = false
+            end
+            Root.Anchored = false
+        end
+    end
+})
+
+Universal:CreateSlider({
+    Name = "Fly Speed",
+    Range = {0, 1000},
+    Increment = 1,
+    Suffix = "Fly Speed",
+    CurrentValue = 25,
+    Flag = "Fly Speed",
+    Callback = function(x)
+        Speed = x
+    end,
+})
+
+game:GetService("UserInputService").InputBegan:Connect(function(x)
+    if not getgenv().InfiniteJump then return end
+    if x.KeyCode == Enum.KeyCode.Space then
+        game.Players.LocalPlayer.Character.Humanoid:ChangeState(3)
+    end
+end)
+
+game.Players.LocalPlayer.Character.Humanoid:GetPropertyChangedSignal("WalkSpeed"):Connect(function()
+    if not getgenv().LoopWalkspeed then return end
+    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = WalkSpeed
+end)
+
+game.Players.LocalPlayer.Character.Humanoid:GetPropertyChangedSignal("JumpPower"):Connect(function()
+    if not getgenv().LoopJumpPower then return end
+    game.Players.LocalPlayer.Character.Humanoid.JumpPower = JumpPower
+end)
+
+
+
+
 
 
 
