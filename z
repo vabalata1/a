@@ -522,17 +522,6 @@ local Esp = {}; do
     end
 end
 
-local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Rayfield/main/source'))()
-local Window = Rayfield:CreateWindow({
-	Name = "FPS Universal",
-	LoadingTitle = "FPS Universal",
-	LoadingSubtitle = "By: Kaoru~#6438",
-	ConfigurationSaving = {
-		Enabled = true,
-		FolderName = "FPS-Universal-Kaoru",
-		FileName = "reddyhub"
-	},
-})
 
 local Main = Window:CreateTab('Main')
 Main:CreateSection("Aimbot")
