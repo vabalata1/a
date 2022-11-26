@@ -536,7 +536,7 @@ local Window = Rayfield:CreateWindow({
 })
 
 local Main = Window:CreateTab('Main')
-Main:CreateSection("Aimbot")
+
 
 Main:CreateToggle({
     Name = "Aimbot",
