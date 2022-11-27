@@ -129,7 +129,7 @@ local function CreateWindow()
 
 	task.defer(function()
 		task.wait(1.5)
-		local Universal = Window:CreateTab("Universal", 4483362458)
+		local Universal = Window:CreateTab("Universal")
 
 		Universal:CreateToggle({
 			Name = "🚫 Anti-AFK",
