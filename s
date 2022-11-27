@@ -523,7 +523,6 @@ local Esp = {}; do
 end
 
 
-local Window = CreateWindow()
 local Main = Window:CreateTab('Main')
 local Main = Window:CreateSection("Aimbot")
 
