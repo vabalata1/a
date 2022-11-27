@@ -307,8 +307,8 @@ end)
 
 
 
-local Main = Window:CreateTab('Main')
-Main:CreateSection("Aimbot")
+local Main = Window:CreateTab("Main", 11606709435)
+local Section = Main:CreateSection("Aimbot")
 
 Main:CreateToggle({
     Name = "Aimbot",
