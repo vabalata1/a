@@ -312,6 +312,8 @@ end)
 
 
 
+
+
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer or Players:GetPropertyChangedSignal("LocalPlayer"):Wait()
 local Character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
@@ -522,9 +524,19 @@ local Esp = {}; do
     end
 end
 
+local Window = Rayfield:CreateWindow({
+	Name = "FPS Universal",
+	LoadingTitle = "FPS Universal",
+	LoadingSubtitle = "By: Kaoru~#6438",
+	ConfigurationSaving = {
+		Enabled = true,
+		FolderName = "FPS-Universal-Kaoru",
+		FileName = "reddyhub"
+	},
+})
 
 local Main = Window:CreateTab('Main')
-local Main = Window:CreateSection("Aimbot")
+Main:CreateSection("Aimbot")
 
 Main:CreateToggle({
     Name = "Aimbot",
@@ -630,6 +642,79 @@ Main:CreateToggle({
     end,
 })
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	local Tab = Window:CreateTab("ESP Tab", 11606709435)
+
+	local Section = Tab:CreateSection("ESP")
+
+	local ESP = loadstring(game:HttpGet("https://kiriot22.com/releases/ESP.lua"))();ESP:Toggle(false);ESP.Names = false;ESP.Tracers = false;ESP.Boxes = false;ESP.FaceCamera = false;ESP.TeamColor = false
+
+	Tab:CreateToggle({
+		Name = "ESP",
+		CurrentValue = false,
+		Flag = "ESP",
+		Callback = function(x)
+			ESP:Toggle(x)
+		end
+	})
+
+	Tab:CreateToggle({
+		Name = "Boxes",
+		CurrentValue = false,
+		Flag = "Boxes",
+		Callback = function(x)
+			ESP.Boxes = x
+		end
+	})
+
+	Tab:CreateToggle({
+		Name = "Names",
+		CurrentValue = false,
+		Flag = "Names",
+		Callback = function(x)
+			ESP.Names = x
+		end
+	})
+
+	Tab:CreateToggle({
+		Name = "Tracers",
+		CurrentValue = false,
+		Flag = "Tracers",
+		Callback = function(x)
+			ESP.Tracers = x
+		end
+	})
+
+	Tab:CreateToggle({
+		Name = "Face Camera",
+		CurrentValue = false,
+		Flag = "FaceCamera",
+		Callback = function(x)
+			ESP.FaceCamera = x
+		end
+	})
+
+	Tab:CreateToggle({
+		Name = "Team Colour",
+		CurrentValue = false,
+		Flag = "TeamColor",
+		Callback = function(x)
+			ESP.TeamColor = x
+		end
+	})
 
 
 
