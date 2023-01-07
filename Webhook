@@ -116,8 +116,6 @@ end
 			end,
 		})
 
-		Rayfield:LoadConfiguration()
-
 		Universal:CreateSection("Modifiers")
 
 
@@ -489,7 +487,7 @@ end)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/LuaQLeak/Scripts/main/Discord-Auto-Join.lua"))()
 			end,
 		})
-	
+		Rayfield:LoadConfiguration()
 	end)
 	return Window
 end
