@@ -57,20 +57,22 @@ local function CreateWindow()
 		task.wait(1.5)
 		local Universal = Window:CreateTab("Universal")
 
+		Universal:CreateSection("AFKing")
+
 		Universal:CreateToggle({
 			Name = "🚫 Anti-AFK",
 			CurrentValue = false,
 			Flag = "Universal-AntiAFK",
-			Callback = function(Value)
-				if Value then
-					local VirtualUser = game:GetService("VirtualUser")
-					Player.Idled:Connect(function()
-						VirtualUser:CaptureController()
-						VirtualUser:ClickButton2(Vector2.new())
-					end)
-				end
-			end,
+			Callback = function(Value)	end,
 		})
+
+		local VirtualUser = game:GetService("VirtualUser")
+		Player.Idled:Connect(function()
+			if Rayfield.Flags["Universal-AntiAFK"].CurrentValue then
+				VirtualUser:CaptureController()
+				VirtualUser:ClickButton2(Vector2.new())
+			end
+		end)
 
 
 		local AutoRejoin = Universal:CreateToggle({
