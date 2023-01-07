@@ -67,13 +67,12 @@ local function CreateWindow()
 			CurrentValue = false,
 			Flag = "Universal-AntiAFK",
 			Callback = function(Value)	
-		local VirtualUser = game:GetService("VirtualUser")
-		Player.Idled:Connect(function()
-			if Rayfield.Flags["Universal-AntiAFK"].CurrentValue then
-				VirtualUser:CaptureController()
-				VirtualUser:ClickButton2(Vector2.new())
-			end
-		end)
+local vu = game:GetService("VirtualUser")
+game:GetService("Players").LocalPlayer.Idled:connect(function()
+   vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+   wait(1)
+   vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+end)
 			end,
 		})
 
