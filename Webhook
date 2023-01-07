@@ -67,12 +67,13 @@ local function CreateWindow()
 			CurrentValue = false,
 			Flag = "Universal-AntiAFK",
 			Callback = function(Value)	
-local vu = game:GetService("VirtualUser")
-game:GetService("Players").LocalPlayer.Idled:connect(function()
-   vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
-   wait(1)
-   vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
-end)
+local function antiafk()
+   plr.Idled:connect(function()
+       game:service("VirtualUser"):CaptureController()
+       game:service("VirtualUser"):ClickButton2(Vector2.new())
+   end)
+   warn("anti-afk injected")
+end
 			end,
 		})
 
