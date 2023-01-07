@@ -1,16 +1,4 @@
-if not game:IsLoaded() then
-	game.Loaded:Wait()
-end
 
-local VirtualInputManager = game:GetService("VirtualInputManager")
-local Player = game:GetService("Players").LocalPlayer or game:GetService("Players").PlayerAdded:Wait()
-local VCurrentVersion
-
-local function CurrentVersion(v)
-	if v then
-		VCurrentVersion = v
-	end
-end
 
 
 local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Rayfield/main/source'))()
@@ -78,9 +66,7 @@ local function CreateWindow()
 			Name = "🚫 Anti-AFK",
 			CurrentValue = false,
 			Flag = "Universal-AntiAFK",
-			Callback = function(Value)	end,
-		})
-
+			Callback = function(Value)	
 		local VirtualUser = game:GetService("VirtualUser")
 		Player.Idled:Connect(function()
 			if Rayfield.Flags["Universal-AntiAFK"].CurrentValue then
@@ -88,6 +74,9 @@ local function CreateWindow()
 				VirtualUser:ClickButton2(Vector2.new())
 			end
 		end)
+			end,
+		})
+
 
 
 		local AutoRejoin = Universal:CreateToggle({
