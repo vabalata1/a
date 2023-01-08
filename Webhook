@@ -558,7 +558,7 @@ Credits:CreateInput({
                         SetSuggestionsWebhook()
                     else
                         Webhook = nil
-                        Notify("You are on a 24 Hour Cooldown", 5)
+                        Notify("You are on a 10 minutes Cooldown", 5)
                     end
                 else
                     Notify("Your Executor does not support this feature", 5)
