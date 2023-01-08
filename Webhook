@@ -105,6 +105,8 @@ local function CreateWindow()
 		task.wait(1.5)
 		local Universal = Window:CreateTab("Universal", 4483362458)
 
+		Universal:CreateSection("AFKing")
+
 		Universal:CreateToggle({
 			Name = "🚫 Anti-AFK",
 			CurrentValue = false,
