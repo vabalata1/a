@@ -161,7 +161,6 @@ local function CreateWindow()
 			end,
 		})
 
-		Rayfield:LoadConfiguration()
 
 		Universal:CreateSection("Modifiers")
 
@@ -571,7 +570,8 @@ Credits:CreateInput({
     end,
 })
 	
-	
+Rayfield:LoadConfiguration()
+
 	end)
 	return Window
 end
