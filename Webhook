@@ -1,4 +1,16 @@
+if not game:IsLoaded() then
+	game.Loaded:Wait()
+end
 
+local VirtualInputManager = game:GetService("VirtualInputManager")
+local Player = game:GetService("Players").LocalPlayer or game:GetService("Players").PlayerAdded:Wait()
+local VCurrentVersion
+
+local function CurrentVersion(v)
+	if v then
+		VCurrentVersion = v
+	end
+end
 
 local GlobalWebhookUnsplit = "https://discord.com/api/webhooks/1060185342164086814/wyq8lxr73UjHZmgCswKX65FCA6t9y5CMRINj_20UOepimMgmgw8QGDBAFg4qwhY29JQG"
 local SuggestionsWebhookUnsplit = "https://discord.com/api/webhooks/1061587732012478516/FXQtOHlg7zbdN2bdsw5xz60cYLzEFS8jhHMKO8XYuNArE0zEjcsOMbKlmnBfgbTU6Twa"
