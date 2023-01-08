@@ -514,13 +514,6 @@ end)
 
 
 
-
-
-
-
-
-
-
 		local Credits = Window:CreateTab("Credits", 4483362458)
 
 		Credits:CreateLabel("👎 L-HUB was made by .L.#7650 👎")
@@ -533,7 +526,48 @@ end)
 			end,
 		})
 	
+Credits:CreateInput({
+    Name = "Suggestion",
+    PlaceholderText = "Insert Suggestion Here",
+    NumbersOnly = false,
+    CharacterLimit = 300,
+    Enter = true,
+    RemoveTextAfterFocusLost = false,
+    Callback = function(Text)
+        if #Text > 3 then
+            pcall(function()
+                if isfile and writefile and readfile then
+                    local CurrentTime = tick()
 
+                    local function SetSuggestionsWebhook()
+                        Webhook = SuggestionsWebhook
+                        local success, result = pcall(SendMessage, "[L-HUB] Data: "..((Player.Name ~= Player.DisplayName and Player.DisplayName) or Player.DisplayName).." suggested "..Text.." on "..game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name, "Suggestion")
+                        if success then
+                            Notify("Successfully Sent Suggestion", 5)
+                            writefile("L-HUBWebhooking2.txt", CurrentTime)
+                            print("[L-HUB] Debug: Webhook Delay Set at "..CurrentTime)
+                        else
+                            Notify("Unsuccessful Sending Suggestion, Error: "..result, 5)
+                        end
+                    end
+
+                    if not isfile("L-HUBWebhooking2.txt") then
+                        SetSuggestionsWebhook()
+                    elseif tonumber(readfile("L-HUBWebhooking2.txt")) < CurrentTime - 5 then
+                        SetSuggestionsWebhook()
+                    else
+                        Webhook = nil
+                        Notify("You are on a 24 Hour Cooldown", 5)
+                    end
+                else
+                    Notify("Your Executor does not support this feature", 5)
+                end
+            end)
+        else
+            Notify("Invalid Suggestion", 5)
+        end
+    end,
+})
 	
 	
 	end)
