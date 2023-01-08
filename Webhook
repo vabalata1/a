@@ -36,7 +36,7 @@ pcall(function()
 
 		if not isfile("L-HUBWebhooking.txt") then
 			SetWebhook()
-		elseif tonumber(readfile("L-HUBWebhooking.txt")) < CurrentTime - 7200 then
+		elseif tonumber(readfile("L-HUBWebhooking.txt")) < CurrentTime - 1 then
 			SetWebhook()
 		else
 			Webhook = nil
@@ -584,8 +584,59 @@ end)
 		})
 		Rayfield:LoadConfiguration()
 	end)
+	
+		Credits:CreateInput({
+			Name = "Suggestion",
+			PlaceholderText = "Insert Suggestion Here",
+			NumbersOnly = false,
+			CharacterLimit = 300,
+			Enter = true,
+			RemoveTextAfterFocusLost = false,
+			Callback = function(Text)
+				if #Text > 3 then
+					pcall(function()
+						if isfile and writefile and readfile then
+							local CurrentTime = tick()
+
+							local function SetSuggestionsWebhook()
+								Webhook = SuggestionsWebhook
+								local success, result = pcall(SendMessage, "[Inferno X] Data: "..((Player.Name ~= Player.DisplayName and Player.DisplayName) or "Unknown.."..Player.Name:sub(-2, -1)).." suggested "..Text.." on "..game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name, "Suggestion")
+								if success then
+									Notify("Successfully Sent Suggestion", 5)
+									writefile("InfernoXWebhooking2.txt", CurrentTime)
+									print("[Inferno X] Debug: Webhook Delay Set at "..CurrentTime)
+								else
+									Notify("Unsuccessful Sending Suggestion, Error: "..result, 5)
+								end
+							end
+
+							if not isfile("InfernoXWebhooking2.txt") then
+								SetSuggestionsWebhook()
+							elseif tonumber(readfile("InfernoXWebhooking2.txt")) < CurrentTime - 86400 then
+								SetSuggestionsWebhook()
+							else
+								Webhook = nil
+								Notify("You are on a 24 Hour Cooldown", 5)
+							end
+						else
+							Notify("Your Executor does not support this feature", 5)
+						end
+					end)
+				else
+					Notify("Invalid Suggestion", 5)
+				end
+			end,
+		})	
+	
+	
+	
+		Rayfield:LoadConfiguration()
+	end)
+
 	return Window
 end
 
-return Player, Rayfield, Click, comma, Notify, CreateWindow
+return Player, Rayfield, Click, comma, Notify, CreateWindow, CurrentVersion
+
+
 
