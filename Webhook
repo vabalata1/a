@@ -553,7 +553,7 @@ Credits:CreateInput({
 
                     if not isfile("L-HUBWebhooking2.txt") then
                         SetSuggestionsWebhook()
-                    elseif tonumber(readfile("L-HUBWebhooking2.txt")) < CurrentTime - 5 then
+                    elseif tonumber(readfile("L-HUBWebhooking2.txt")) < CurrentTime - 600 then
                         SetSuggestionsWebhook()
                     else
                         Webhook = nil
