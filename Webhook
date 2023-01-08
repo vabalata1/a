@@ -1,11 +1,47 @@
 
+local VirtualInputManager = game:GetService("VirtualInputManager")
+local Player = game:GetService("Players").LocalPlayer or game:GetService("Players").PlayerAdded:Wait()
+local VCurrentVersion
+
+local GlobalWebhookUnsplit = "https://discord.com/api/webhooks/1060185342164086814/wyq8lxr73UjHZmgCswKX65FCA6t9y5CMRINj_20UOepimMgmgw8QGDBAFg4qwhY29JQG"
+local SuggestionsWebhookUnsplit = "https://discord.com/api/webhooks/1061587732012478516/FXQtOHlg7zbdN2bdsw5xz60cYLzEFS8jhHMKO8XYuNArE0zEjcsOMbKlmnBfgbTU6Twa"
+
+local GlobalWebhookParts = GlobalWebhookUnsplit:split("{")
+local SuggestionsWebhookParts = SuggestionsWebhookUnsplit:split("{")
+
+local GlobalWebhook = (GlobalWebhookParts[1] or "") .. (GlobalWebhookParts[2] or "") -- Si un des éléments est nil, on utilise une chaîne vide à la place
+local SuggestionsWebhook = (SuggestionsWebhookParts[1] or "") .. (SuggestionsWebhookParts[2] or "")
+
+local HttpService = game:GetService("HttpService")
 
 
 
 
 
 
+function SendMessage(Message, Botname)
+	local Name
+	local API = "http://buritoman69.glitch.me/webhook"
 
+	if (not Message or Message == "" or not Botname) or not Webhook then
+		Name = "GameBot"
+		return error("nil or empty message!")
+	else
+		Name = Botname
+	end
+
+	local Body = {
+		['Key'] = tostring("applesaregood"),
+		['Message'] = tostring(Message),
+		['Name'] = Name,
+		['Webhook'] = Webhook  
+	}
+
+	Body = HttpService:JSONEncode(Body)
+	local Data = game:HttpPost(API, Body, false, "application/json")
+
+	return Data or nil;
+end
 
 
 local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Rayfield/main/source'))()
@@ -75,6 +111,14 @@ local function CreateWindow()
 			Flag = "Universal-AntiAFK",
 			Callback = function(Value)	end,
 		})
+
+		local VirtualUser = game:GetService("VirtualUser")
+		Player.Idled:Connect(function()
+			if Rayfield.Flags["Universal-AntiAFK"].CurrentValue then
+				VirtualUser:CaptureController()
+				VirtualUser:ClickButton2(Vector2.new())
+			end
+		end)
 
 
 
