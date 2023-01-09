@@ -462,12 +462,3 @@ Rayfield:LoadConfiguration()
 end
 
 return Player, Rayfield, Click, comma, Notify, CreateWindow
-
-
-
-
-
-
-
-
-return Player, Rayfield, Click, comma, Notify, CreateWindow
