@@ -222,7 +222,121 @@ Toggle = Universal:CreateToggle({
 })
 
 
+		Universal:CreateSection("Safety")
 
+		local GroupId = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Creator.CreatorTargetId
+
+		Universal:CreateToggle({
+			Name = "🚪 Leave Upon Staff Join",
+			Info = "Kicks you if a player above the group role 1 joins/is in the server",
+			CurrentValue = false,
+			Flag = "Universal-AutoLeave",
+			Callback = function(Value)
+				if Value then
+					for i,v in pairs(game.Players:GetPlayers()) do
+						pcall(function()
+							if v:IsInGroup(GroupId) and v:GetRankInGroup(GroupId) > 1 then
+								AutoRejoin:Set(false)
+								Player:Kick("Detected Staff (Player above group role 1)")
+							end
+						end)
+					end
+				end
+			end,
+		})
+
+		game:GetService("Players").PlayerAdded:Connect(function(v)
+			if Rayfield.Flags["Universal-AutoLeave"].CurrentValue then
+				pcall(function()
+					if v:IsInGroup(GroupId) and v:GetRankInGroup(GroupId) > 1 then
+						AutoRejoin:Set(false)
+						Player:Kick("Detected Staff (Player above group role 1)")
+					end
+				end)
+			end
+		end)
+
+		Universal:CreateSection("Grinding")
+		
+		Universal:CreateButton({
+			Name = "🔂 One-Time Server Hop",
+			Callback = function()
+				local Http = game:GetService("HttpService")
+				local TPS = game:GetService("TeleportService")
+				local Api = "https://games.roblox.com/v1/games/"
+
+				local _place,_id = game.PlaceId, game.JobId
+				local _servers = Api.._place.."/servers/Public?sortOrder=Desc&limit=100"
+
+				local function ListServers(cursor)
+					local Raw = game:HttpGet(_servers .. ((cursor and "&cursor="..cursor) or ""))
+					return Http:JSONDecode(Raw)
+				end
+
+				local Next; repeat
+					local Servers = ListServers(Next)
+					for i,v in next, Servers.data do
+						if v.playing < v.maxPlayers and v.id ~= _id then
+							local s,r = pcall(TPS.TeleportToPlaceInstance,TPS,_place,v.id,Player)
+							if s then break end
+						end
+					end
+
+					Next = Servers.nextPageCursor
+				until not Next
+			end,
+		})
+		
+		Universal:CreateToggle({
+			Name = "🔁 Server Hop",
+			Info = "Automatically server hops after the interval",
+			CurrentValue = false,
+			Flag = "Universal-ServerHop",
+			Callback = function(Value)	end,
+		})
+		
+		Universal:CreateSlider({
+			Name = "⏲ Server Hop Intervals",
+			Info = "Sets the interval in seconds for the Server Hop",
+			Range = {5, 600},
+			Increment = 1,
+			CurrentValue = 5,
+			Flag = "Universal-ServerhopIntervals",
+			Callback = function(Value)	end,
+		})
+		
+		task.spawn(function()
+			while task.wait(Rayfield.Flags["Universal-ServerhopIntervals"].CurrentValue) do
+				if Rayfield.Flags["Universal-ServerHop"].CurrentValue then
+					local Http = game:GetService("HttpService")
+					local TPS = game:GetService("TeleportService")
+					local Api = "https://games.roblox.com/v1/games/"
+
+					local _place,_id = game.PlaceId, game.JobId
+					local _servers = Api.._place.."/servers/Public?sortOrder=Desc&limit=100"
+					
+					local function ListServers(cursor)
+						local Raw = game:HttpGet(_servers .. ((cursor and "&cursor="..cursor) or ""))
+						return Http:JSONDecode(Raw)
+					end
+
+					local Next; repeat
+						local Servers = ListServers(Next)
+						for i,v in next, Servers.data do
+							if v.playing < v.maxPlayers and v.id ~= _id then
+								local s,r = pcall(TPS.TeleportToPlaceInstance,TPS,_place,v.id,Player)
+								if s then break end
+							end
+						end
+
+						Next = Servers.nextPageCursor
+					until not Next
+				end
+			end
+		end)
+
+
+		Universal:CreateSection("")
 
 local Speed=50;loadstring(game:HttpGet("https://raw.githubusercontent.com/LegitH3x0R/Roblox-Scripts/main/AEBypassing/RootAnchor.lua"))()local UIS=game:GetService("UserInputService")local OnRender=game:GetService("RunService").RenderStepped;local Player=game:GetService("Players").LocalPlayer;local Character=Player.Character or Player.CharacterAdded:Wait()local Camera=workspace.CurrentCamera;local Root=Character:WaitForChild("HumanoidRootPart")local C1,C2,C3;local Nav={Flying=false,Forward=false,Backward=false,Left=false,Right=false}C1=UIS.InputBegan:Connect(function(Input)if getgenv()["Fly | E"] then if Input.UserInputType==Enum.UserInputType.Keyboard then if Input.KeyCode==Enum.KeyCode.E then Nav.Flying=not Nav.Flying;Root.Anchored=Nav.Flying elseif Input.KeyCode==Enum.KeyCode.W then Nav.Forward=true elseif Input.KeyCode==Enum.KeyCode.S then Nav.Backward=true elseif Input.KeyCode==Enum.KeyCode.A then Nav.Left=true elseif Input.KeyCode==Enum.KeyCode.D then Nav.Right=true end end end end)C2=UIS.InputEnded:Connect(function(Input)if Input.UserInputType==Enum.UserInputType.Keyboard then if Input.KeyCode==Enum.KeyCode.W then Nav.Forward=false elseif Input.KeyCode==Enum.KeyCode.S then Nav.Backward=false elseif Input.KeyCode==Enum.KeyCode.A then Nav.Left=false elseif Input.KeyCode==Enum.KeyCode.D then Nav.Right=false end end end)C3=Camera:GetPropertyChangedSignal("CFrame"):Connect(function()if Nav.Flying then Root.CFrame=CFrame.new(Root.CFrame.Position,Root.CFrame.Position+Camera.CFrame.LookVector)end end)task.spawn(function()while true do local Delta=OnRender:Wait()if Nav.Flying then if Nav.Forward then Root.CFrame=Root.CFrame+(Camera.CFrame.LookVector*(Delta*Speed))end;if Nav.Backward then Root.CFrame=Root.CFrame+(-Camera.CFrame.LookVector*(Delta*Speed))end;if Nav.Left then Root.CFrame=Root.CFrame+(-Camera.CFrame.RightVector*(Delta*Speed))end;if Nav.Right then Root.CFrame=Root.CFrame+(Camera.CFrame.RightVector*(Delta*Speed))end end end end)
 
@@ -269,6 +383,9 @@ game.Players.LocalPlayer.Character.Humanoid:GetPropertyChangedSignal("JumpPower"
     if not getgenv().LoopJumpPower then return end
     game.Players.LocalPlayer.Character.Humanoid.JumpPower = JumpPower
 end)
+
+
+
 
 
 
