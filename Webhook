@@ -1,9 +1,6 @@
 
 
 
-
-
-
 local VirtualInputManager = game:GetService("VirtualInputManager")
 local Player = game:GetService("Players").LocalPlayer or game:GetService("Players").PlayerAdded:Wait()
 local VCurrentVersion
@@ -47,7 +44,6 @@ function SendMessage(Message, Botname)
 
 	return Data or nil;
 end
-
 
 local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Rayfield/main/source'))()
 
@@ -269,10 +265,6 @@ Toggle = Universal:CreateToggle({
 		end
 	end,
 })
-
-
-
-
 
 
 
@@ -557,6 +549,13 @@ end)
 			UptimeLabel:Set(Uptime2:format(Uptime))
 		end
 	end)
+
+
+
+
+
+
+
 
 
 
