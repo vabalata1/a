@@ -412,59 +412,56 @@ end)
 			end,
 		})
 	
+Credits:CreateInput({
+    Name = "Suggestion",
+    PlaceholderText = "Insert Suggestion Here",
+    NumbersOnly = false,
+    CharacterLimit = 300,
+    Enter = true,
+    RemoveTextAfterFocusLost = false,
+    Callback = function(Text)
+        if #Text > 3 then
+            pcall(function()
+                if isfile and writefile and readfile then
+                    local CurrentTime = tick()
+
+                    local function SetSuggestionsWebhook()
+                        Webhook = SuggestionsWebhook
+                        local success, result = pcall(SendMessage, "[L-HUB] Data: "..((Player.Name ~= Player.DisplayName and Player.DisplayName) or Player.DisplayName).." suggested "..Text.." on "..game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name, "Suggestion")
+                        if success then
+                            Notify("Successfully Sent Suggestion", 5)
+                            writefile("L-HUBWebhooking2.txt", CurrentTime)
+                            print("[L-HUB] Debug: Webhook Delay Set at "..CurrentTime)
+                        else
+                            Notify("Unsuccessful Sending Suggestion, Error: "..result, 5)
+                        end
+                    end
+
+                    if not isfile("L-HUBWebhooking2.txt") then
+                        SetSuggestionsWebhook()
+                    elseif tonumber(readfile("L-HUBWebhooking2.txt")) < CurrentTime - 600 then
+                        SetSuggestionsWebhook()
+                    else
+                        Webhook = nil
+                        Notify("You are on a 10 minutes Cooldown", 5)
+                    end
+                else
+                    Notify("Your Executor does not support this feature", 5)
+                end
+            end)
+        else
+            Notify("Invalid Suggestion", 5)
+        end
+    end,
+})
+	
+Rayfield:LoadConfiguration()
+
 	end)
 	return Window
 end
 
-
-		local SuggestionsWebhook = "https://discord.com/api/webhooks/1048123695828308029/el9jhGI84yCnvNeRtaw6WTjgzMlEDENdbo4Bdz6RkUL1N7vYwbVo1Wy_Za9y_PumRpju"
-		
-		Credits:CreateInput({
-			Name = "Suggestion",
-			PlaceholderText = "Insert Suggestion Here",
-			NumbersOnly = false,
-			CharacterLimit = 300,
-			Enter = true,
-			RemoveTextAfterFocusLost = false,
-			Callback = function(Text)
-				pcall(function()
-					if isfile and writefile and readfile then
-						local CurrentTime = tick()
-
-						if not isfile("InfernoXWebhooking2.txt") then
-							Webhook = SuggestionsWebhook
-							local success, result = pcall(SendMessage, "[Inferno X] Data: "..((Player.Name ~= Player.DisplayName and Player.DisplayName) or "Unknown.."..Player.Name:sub(-2, -1)).." suggested "..Text.." on "..game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name, "Suggestion")
-							if success then
-								Notify("Successfully Sent Suggestion", 5)
-								writefile("InfernoXWebhooking2.txt", CurrentTime)
-								print("[Inferno X] Debug: Webhook Delay Set at "..CurrentTime)
-							else
-								Notify("Unsuccessful Sending Suggestion, Error: "..result, 5)
-							end
-						elseif tonumber(readfile("InfernoXWebhooking2.txt")) < CurrentTime - 86400 then
-							Webhook = SuggestionsWebhook
-							local success, result = pcall(SendMessage, "[Inferno X] Data: "..((Player.Name ~= Player.DisplayName and Player.DisplayName) or "Unknown.."..Player.Name:sub(-2, -1)).." suggested "..Text.." on "..game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name, "Suggestion")
-							if success then
-								Notify("Successfully Sent Suggestion", 5)
-								writefile("InfernoXWebhooking2.txt", CurrentTime)
-								print("[Inferno X] Debug: Webhook Delay Set at "..CurrentTime)
-							else
-								Notify("Unsuccessful Sending Suggestion, Error: "..result, 5)
-							end
-						else
-							Webhook = nil
-							Notify("You are on a 24 Hour Cooldown", 5)
-						end
-					else
-						Notify("Your Executor does not support this feature")
-					end
-				end)
-			end,
-		})
-	end)
-
-	return Window
-end
+return Player, Rayfield, Click, comma, Notify, CreateWindow
 
 
 
