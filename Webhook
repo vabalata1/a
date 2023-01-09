@@ -291,7 +291,7 @@ Toggle = Universal:CreateToggle({
 						pcall(function()
 							if v:IsInGroup(GroupId) and v:GetRankInGroup(GroupId) > 1 then
 								AutoRejoin:Set(false)
-								Player:Kick("Detected Staff (Player above group rank 1)")
+								Player:Kick("Detected Staff (Player above group role 1)")
 							end
 						end)
 					end
