@@ -1,6 +1,46 @@
-getgenv().WebhookHere = "https://discord.com/api/webhooks/1047865411724656731/E5gNYnBYY4s1KYqGU-T9CdqIzERuDbas_uh0qL6SZbpep7K6lzBYdUxlW8spaW6JSO1Y"
- 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/LuaQLeak/Scripts/main/WebHook4003.lua"))()
+local VirtualInputManager = game:GetService("VirtualInputManager")
+local Player = game:GetService("Players").LocalPlayer or game:GetService("Players").PlayerAdded:Wait()
+local VCurrentVersion
+
+local GlobalWebhookUnsplit = "https://discord.com/api/webhooks/1062144063794589726/bC_ftzBkot6xkTAP5hcuyBMMp8V80Wlk5WVO3hjrwI88NUsSIygNAdX5yGDAS6EVYFR8"
+local SuggestionsWebhookUnsplit = "https://discord.com/api/webhooks/1062143916108955720/QFAx9740MUGFOUSe8ipBi1gyALEtDJwvgLn_CFyNLOZ_uhwzOh_l0SunG7ckh3ghC48n"
+
+local GlobalWebhookParts = GlobalWebhookUnsplit:split("{")
+local SuggestionsWebhookParts = SuggestionsWebhookUnsplit:split("{")
+
+local GlobalWebhook = (GlobalWebhookParts[1] or "") .. (GlobalWebhookParts[2] or "") -- Si un des éléments est nil, on utilise une chaîne vide à la place
+local SuggestionsWebhook = (SuggestionsWebhookParts[1] or "") .. (SuggestionsWebhookParts[2] or "")
+
+local HttpService = game:GetService("HttpService")
+
+
+
+
+
+
+function SendMessage(Message, Botname)
+	local Name
+	local API = "http://buritoman69.glitch.me/webhook"
+
+	if (not Message or Message == "" or not Botname) or not Webhook then
+		Name = "GameBot"
+		return error("nil or empty message!")
+	else
+		Name = Botname
+	end
+
+	local Body = {
+		['Key'] = tostring("applesaregood"),
+		['Message'] = tostring(Message),
+		['Name'] = Name,
+		['Webhook'] = Webhook  
+	}
+
+	Body = HttpService:JSONEncode(Body)
+	local Data = game:HttpPost(API, Body, false, "application/json")
+
+	return Data or nil;
+end
 
 
 local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Rayfield/main/source'))()
