@@ -573,7 +573,7 @@ end)
 			end,
 		})
 		
-		local Section = Tab:CreateSection("Suggestion off join me discord for suggestion")
+		local Section = Credits:CreateSection("Suggestion off join me discord for suggestion")
 
 Credits:CreateInput({
     Name = "Suggestion",
