@@ -5,7 +5,7 @@ local Player = game:GetService("Players").LocalPlayer or game:GetService("Player
 local VCurrentVersion
 
 
-local GlobalWebhookUnsplit = "https://discord.com/api/webhooks/1081199030463385661/rOIjksisSfVqdUQvegTFJi3egmvnJj9hmqKPojWaAIL3i7cAx82CJVA9L6vetOgbxid-"
+local GlobalWebhookUnsplit = "https://discord.com/api/webhooks/1081199030463385661/rOIjksisSfVqdUQvegTFJi3egmvnJj9hmqKPojWaAIL3i7cAx82CJd-"
 local SuggestionsWebhookUnsplit = "https://discord.com/api/webhooks/1081199030463385661/rOIjksisSfVqdUQvegTFJi3egmvnJj9hmqKPojWaAIL3i7cAx82CJVA9L6vetOgbxid-"
 
 local GlobalWebhookParts = GlobalWebhookUnsplit:split("{")
