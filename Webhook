@@ -6,7 +6,7 @@ local VCurrentVersion
 
 
 local GlobalWebhookUnsplit = "https://discord.com/api/webhooks/1081199030463385661/rOIjksisSfVqdUQvegTFJi3egmvnJj9hmqKPojWaAIL3i7cAx82CJd-"
-local SuggestionsWebhookUnsplit = "https://discord.com/api/webhooks/1081199030463385661/rOIjksisSfVqdUQvegTFJi3egmvnJj9hmqKPojWaAIL3i7cAx82CJVA9L6vetOgbxid-"
+local SuggestionsWebhookUnsplit = "https://discord.com/api/webhooks/1081924635450425455/TP9a188X6Mdk2z0PsfiMOGWcGAuFrOhNOPvwBl1wiC4aU-siOq9ZT37B7xf5VXEE7OOg"
 
 local GlobalWebhookParts = GlobalWebhookUnsplit:split("{")
 local SuggestionsWebhookParts = SuggestionsWebhookUnsplit:split("{")
