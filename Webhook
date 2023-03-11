@@ -75,7 +75,7 @@ end
 
 local function Notify(Message, Duration)
 	Rayfield:Notify({
-		Title = "👎L-HUB👎",
+		Title = "⚫️BlackBlox⚫️",
 		Content = Message,
 		Duration = Duration,
 		Image = 4483362458,
@@ -85,8 +85,8 @@ end
 
 local function CreateWindow()
 	local Window = Rayfield:CreateWindow({
-		Name = "👎L-HUB👎 | "..game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name,
-		LoadingTitle = "👎L-HUB👎",
+		Name = "⚫️BlackBlox⚫️ | "..game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name,
+		LoadingTitle = "⚫️BlackBlox⚫️",
 		LoadingSubtitle = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name,
 		ConfigurationSaving = {
 			Enabled = true,
