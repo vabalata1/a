@@ -6,25 +6,10 @@ local Deleted = false
 local File = pcall(function()
     AllIDs = game:GetService('HttpService'):JSONDecode(readfile("NotSameServers.json"))
 end)
-
 if not File then
     table.insert(AllIDs, actualHour)
     writefile("NotSameServers.json", game:GetService('HttpService'):JSONEncode(AllIDs))
-else
-    for i = 1, #AllIDs do
-        if actualHour - tonumber(AllIDs[i]) >= 0.5 then -- si 30 minutes se sont écoulées
-            table.remove(AllIDs, i)
-            writefile("NotSameServers.json", game:GetService('HttpService'):JSONEncode(AllIDs))
-            Deleted = true
-        end
-    end
 end
-
-if not Deleted then -- si aucun serveur n'a été supprimé, ajouter l'heure actuelle à la liste
-    table.insert(AllIDs, actualHour)
-    writefile("NotSameServers.json", game:GetService('HttpService'):JSONEncode(AllIDs))
-end
-
 function TPReturner()
     local Site;
     if foundAnything == "" then
@@ -82,4 +67,5 @@ function Teleport()
     end
 end
 
+-- If you'd like to use a script before server hopping (Like a Automatic Chest collector you can put the Teleport() after it collected everything.
 Teleport()
